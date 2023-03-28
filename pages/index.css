@@ -1,0 +1,148 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
+.page {
+  color: #fff;
+  background-color: #000;
+}
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page__section {
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+.header {
+  padding: 45px;
+  height: 74px;
+  border-bottom: 1px solid #545454;
+  margin: 0 auto;
+  color: #fff;
+}
+.header__logo {
+  width: 173px;
+  height: 33px;
+  background-color: transparent;
+}
+.profile {
+  display: flex;
+  margin: 0 auto;
+  height: 120px;
+  align-items: center;
+  padding: 40px 0 0 0;
+}
+.profile__avatar {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background-position: center;
+  margin-right: 24px;
+}
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    "title button"
+    "subtitle subtitle";
+  grid-template-columns: minmax(auto, 373px) auto;
+  align-items: center;
+  justify-content: center;
+}
+.profile__edit-button {
+  grid-area: button;
+  width: 24px;
+  height: 24px;
+  background: no-repeat transparent url(../images/pen.svg) center;
+  border: 1px solid #fff;
+  padding: 7px;
+  cursor: pointer;
+  margin: 0 0 0 18px;
+}
+
+.profile__title {
+  grid-area: title;
+  padding: 0;
+  margin: 0;
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  font-family: "Inter", Arial, sans-serif;
+}
+.profile__subtitle {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  grid-area: subtitle;
+  padding: 0;
+  margin: 7px 0 0 0;
+}
+.profile__add-button {
+  background: transparent url(../images/plus.svg) center no-repeat;
+  width: 150px;
+  height: 50px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 0 0 auto;
+}
+
+.cards {
+  margin-top: 47px;
+  /* fonts */
+}
+.card__list {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+  margin: 0;
+  padding: 0;
+}
+.card {
+  list-style-type: none;
+  width: 282px;
+  height: 361px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+.card__image {
+  width: 282px;
+  height: 282px;
+}
+.card__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+
+  padding: 25px 20px;
+}
+.card__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+  padding: 0;
+}
+.card__button {
+  margin: 0;
+  cursor: pointer;
+  height: 18px;
+  width: 21px;
+  border: none;
+  background: transparent url(../images/heart.svg) no-repeat center;
+}
