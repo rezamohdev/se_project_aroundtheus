@@ -73,7 +73,7 @@
     text-align: left;
   }
 
-  .card {
+  .card__list-item {
     margin-top: 36px;
   }
   .footer {
@@ -93,7 +93,7 @@
     margin: 0 auto;
   }
 
-  .cards {
+  .card__list-items {
     margin: 26px 0 0 0;
   }
 }

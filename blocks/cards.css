@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
 }
-.card {
+.card__list-item {
   list-style-type: none;
   width: 282px;
   height: 361px;
