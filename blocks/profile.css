@@ -46,7 +46,10 @@
   font-weight: 500;
   font-family: "Inter", Arial, sans-serif;
 }
-.profile__subtitle {
+.profile__description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-family: "Inter", Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;

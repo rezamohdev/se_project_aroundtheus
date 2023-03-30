@@ -23,15 +23,13 @@
     margin: 26px 0 0 0;
   }
   .profile__title {
-    font-weight: 500;
     font-size: 22px;
     line-height: 27px;
     text-align: center;
   }
-  .profile__subtitle {
+  .profile__description {
     width: 100%;
     font-style: normal;
-    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
@@ -66,12 +64,11 @@
     column-gap: 0;
   }
   .profile__title {
-    font-weight: 500;
     font-size: 22px;
     line-height: 27px;
     text-align: left;
   }
-  .profile__subtitle {
+  .profile__description {
     width: 100%;
     text-align: left;
   }
