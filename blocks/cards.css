@@ -1,0 +1,59 @@
+.cards {
+  margin-top: 47px;
+  /* fonts */
+}
+.card__list {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+  margin: 0;
+  padding: 0;
+}
+.card {
+  list-style-type: none;
+  width: 282px;
+  height: 361px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+.card__image {
+  width: 282px;
+  height: 282px;
+}
+
+.card__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+
+  padding: 25px 20px;
+}
+.card__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+  padding: 0;
+}
+.card__button {
+  margin: 0;
+  cursor: pointer;
+  height: 18px;
+  width: 21px;
+  border: none;
+  background: transparent url(../images/heart.svg) no-repeat center;
+  transition: opacity 470ms ease;
+}
+.card__button:hover {
+  opacity: 0.5;
+}

@@ -1,0 +1,12 @@
+.header {
+  padding: 45px;
+  height: 74px;
+  border-bottom: 1px solid #545454;
+  margin: 0 auto;
+  color: #fff;
+}
+.header__logo {
+  width: 173px;
+  height: 33px;
+  background-color: transparent;
+}
