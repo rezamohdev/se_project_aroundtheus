@@ -1,6 +1,7 @@
 .page {
   color: #fff;
   background-color: #000;
+  font-family: "Inter", Arial, sans-serif;
 }
 .page__content {
   display: flex;
@@ -12,4 +13,24 @@
   width: 100%;
   position: relative;
   margin: 0 auto;
+}
+@media screen and (max-width: 627px) {
+  .page {
+    padding-top: 28px;
+  }
+  .page__section {
+    max-width: calc(100% - 40px);
+  }
+}
+@media (min-width: 627px) and (max-width: 768px) {
+  .page__section {
+    max-width: calc(100% - 40px);
+    margin: 0 20px;
+  }
+}
+@media (min-width: 769px) and (max-width: 942px) {
+  .page__section {
+    max-width: calc(100% - 40px);
+    margin: 0 20px;
+  }
 }

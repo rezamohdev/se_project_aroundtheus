@@ -1,5 +1,5 @@
 .header {
-  padding: 45px;
+  padding: 45px 0 0 0;
   height: 74px;
   border-bottom: 1px solid #545454;
   margin: 0 auto;
@@ -9,4 +9,22 @@
   width: 173px;
   height: 33px;
   background-color: transparent;
+}
+@media screen and (max-width: 627px) {
+  .header {
+    height: 56px;
+    padding: 0 0 32px 27px;
+  }
+  .header__logo {
+    width: 126px;
+    height: 24px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 942px) {
+  .header {
+    padding: 28px 0 32px 27px;
+    margin: 0 auto;
+    height: auto;
+  }
 }

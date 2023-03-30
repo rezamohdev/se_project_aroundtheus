@@ -73,3 +73,61 @@
 .profile__add-button:hover {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 627px) {
+  .profile {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 26px 0 0 0;
+  }
+  .profile__title {
+    font-size: 22px;
+    line-height: 27px;
+    text-align: center;
+  }
+  .profile__description {
+    width: 100%;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+  .profile__add-button {
+    margin: 36px 0 0 0;
+    width: 282px;
+  }
+}
+@media (min-width: 627px) and (max-width: 768px) {
+  .header {
+    padding: 28px 0 32px 27px;
+    margin: 0 auto;
+    height: auto;
+  }
+  .profile {
+    display: flex;
+    justify-content: center;
+    height: auto;
+  }
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 0;
+  }
+  .profile__title {
+    font-size: 22px;
+    line-height: 27px;
+    text-align: left;
+  }
+  .profile__description {
+    width: 100%;
+    text-align: left;
+  }
+}

@@ -1,0 +1,13 @@
+.gallery {
+  margin-top: 47px;
+  /* fonts */
+}
+.gallery__cards {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+  margin: 0;
+  padding: 0;
+}
