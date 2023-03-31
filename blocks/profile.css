@@ -1,7 +1,6 @@
 .profile {
   display: flex;
   margin: 0 auto;
-  height: 120px;
   align-items: center;
   padding: 40px 0 0 0;
 }
@@ -31,10 +30,10 @@
   padding: 7px;
   cursor: pointer;
   margin: 0 0 0 18px;
-  transition: opacity 470ms ease;
+  transition: opacity 410ms ease;
 }
 .profile__edit-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .profile__title {
@@ -45,6 +44,9 @@
   line-height: 48px;
   font-weight: 500;
   font-family: "Inter", Arial, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__description {
   text-overflow: ellipsis;
@@ -57,7 +59,7 @@
   letter-spacing: 0em;
   text-align: left;
   grid-area: subtitle;
-  padding: 0;
+  padding: 0 10px;
   margin: 7px 0 0 0;
 }
 .profile__add-button {
@@ -65,36 +67,46 @@
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
+  border-radius: 2px;
   cursor: pointer;
   padding: 0;
   margin: 0 0 0 auto;
-  transition: opacity 470ms ease;
+  transition: opacity 410ms ease;
 }
 .profile__add-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 627px) {
   .profile {
+    max-width: 100%;
     flex-direction: column;
     height: auto;
   }
 
   .profile__info {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
-    margin: 26px 0 0 0;
+    grid-template-columns: minmax(auto, 200px) auto;
+    grid-gap: 10px;
+    max-width: calc(100% - 40px);
+    margin: 26px 20px 0 20px;
+  }
+  .profile__avatar {
+    margin: 0;
   }
   .profile__title {
     font-size: 22px;
     line-height: 27px;
     text-align: center;
   }
+  .profile__edit-button {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+  }
   .profile__description {
     width: 100%;
-    font-style: normal;
+    max-width: 282px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
@@ -111,7 +123,6 @@
     height: auto;
   }
   .profile {
-    display: flex;
     justify-content: center;
     height: auto;
   }
@@ -122,12 +133,12 @@
     column-gap: 0;
   }
   .profile__title {
-    font-size: 22px;
-    line-height: 27px;
+    font-size: 25px;
+    line-height: 38px;
     text-align: left;
   }
   .profile__description {
-    width: 100%;
-    text-align: left;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
