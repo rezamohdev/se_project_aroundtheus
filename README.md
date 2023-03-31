@@ -27,11 +27,16 @@ This project is made so all the elements are displayed correctly on popular scre
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
+**Page deployed on github live**
+
+-[Link to the doployed page on github](https://rezamohdev.github.io/se_project_aroundtheus/)
+
 **Images**
 
 The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
 
 **Plan on improving the project**
-We'll add more functionality to project next versions from different UI component to making our page from a simple static page to a fully functional and dynamic website.
+
+From a simple static page, step by step We'll add more functionality to next versions, from different UI component to a fully functional and dynamic website.
 
 Good luck and have fun!
