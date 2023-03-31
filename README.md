@@ -29,7 +29,7 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **Page deployed on github live**
 
--[Link to the doployed page on github](https://rezamohdev.github.io/se_project_aroundtheus/)
+- [Link to the doployed page on github](https://rezamohdev.github.io/se_project_aroundtheus/)
 
 **Images**
 
