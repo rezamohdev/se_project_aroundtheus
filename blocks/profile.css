@@ -132,6 +132,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     column-gap: 0;
+    max-width: 282px;
   }
   .profile__title {
     max-width: 195px;
@@ -142,5 +143,9 @@
   .profile__description {
     max-width: 100%;
     overflow: hidden;
+  }
+
+  .profile__edit-button {
+    margin: 0 0 0 10px;
   }
 }
