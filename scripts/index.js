@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
     {
         "Yosemite Valley":
             "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg"
