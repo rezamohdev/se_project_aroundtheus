@@ -25,6 +25,7 @@
             <button
               type="button"
               class="profile__edit-button"
+              id="profile-edit-button"
               aria-label="Edit"
             ></button>
             <p class="profile__description">Explore</p>
@@ -134,14 +135,24 @@
         <p class="footer__copyright">&copy; Around the U.S.</p>
       </footer>
     </div>
-    <div class="modal modal_opened">
+    <div class="modal" id="profile-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button class="modal__close" id="modal-close"></button>
         <p class="modal__title">Edit profile</p>
         <form action="#" class="modal__form">
-          <input type="text" name="title" class="modal__input" />
+          <input
+            type="text"
+            name="title"
+            class="modal__input"
+            value="Jacques Cousteau"
+          />
 
-          <input type="text" name="description" class="modal__input" />
+          <input
+            type="text"
+            name="description"
+            class="modal__input"
+            value="Explore"
+          />
           <button class="modal__button" type="button">Save</button>
         </form>
       </div>

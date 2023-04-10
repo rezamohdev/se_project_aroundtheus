@@ -7,6 +7,7 @@
   right: 0;
   z-index: 999;
   justify-content: center;
+  display: none;
 }
 .modal_opened {
   display: flex;
@@ -61,11 +62,17 @@
 .modal__button {
   width: 358px;
   height: 50.15px;
-  background: #000000;
+  background-color: rgba(0, 0, 0, 1);
   color: #ffffff;
   border-radius: 2px;
   padding: 0;
   margin: 18px 0 0 0;
+  transition: background-color ease 600ms;
+  border: none;
+  cursor: pointer;
+}
+.modal__button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 @media screen and (max-width: 627px) {
   .modal__container {
