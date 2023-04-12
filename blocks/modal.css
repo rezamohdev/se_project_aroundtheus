@@ -30,7 +30,11 @@
   border: none;
   background: transparent no-repeat url(../images/Close\ Icon.svg) center /
     contain;
+  transition: ease 456ms opacity;
   cursor: pointer;
+}
+.modal__close:hover {
+  opacity: 0.6;
 }
 .modal__title {
   max-width: 330px;
