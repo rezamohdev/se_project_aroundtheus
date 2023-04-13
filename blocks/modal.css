@@ -74,6 +74,12 @@
   transition: background-color ease 600ms;
   border: none;
   cursor: pointer;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
 }
 .modal__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
@@ -91,9 +97,17 @@
   }
   .modal__title {
     margin-bottom: 58px;
+    font-size: 18px;
+    line-height: 22px;
   }
   .modal__button {
     max-width: 238px;
+    font-family: "Inter", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
   }
   .modal__input {
     max-width: 238px;
