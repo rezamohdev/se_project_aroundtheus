@@ -21,11 +21,17 @@
     margin: 0 0 32px 27px;
   }
 }
+@media (min-width: 627px) and (max-width: 768px) {
+  .header {
+    padding: 28px 0 32px 27px;
+    margin: 0 auto;
+    height: auto;
+  }
+}
 
 @media (min-width: 769px) and (max-width: 942px) {
   .header {
     padding: 28px 0 32px 27px;
-    margin: 0 auto;
     height: auto;
   }
 }
