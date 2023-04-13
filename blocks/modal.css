@@ -117,7 +117,8 @@
     height: 45px;
   }
   .modal__close {
-    height: 40px;
-    left: calc(100% - 25px);
+    height: 25px;
+    left: calc(100% - 35px);
+    bottom: calc(100% + 13px);
   }
 }
