@@ -117,7 +117,7 @@
     height: 45px;
   }
   .modal__close {
-    width: 25px;
+    height: 40px;
     left: calc(100% - 25px);
   }
 }
