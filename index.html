@@ -34,6 +34,7 @@
             type="button"
             class="profile__add-button"
             aria-label="Add"
+            id="profile-add-button"
           ></button>
         </section>
         <section class="gallery page__section">
@@ -67,6 +68,42 @@
             placeholder="Description"
           />
           <button class="modal__button" id="modal-submit-button" type="submit">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="card-modal">
+      <div class="modal__container">
+        <button
+          type="button"
+          class="modal__close"
+          id="card-modal-close"
+        ></button>
+        <h3 class="modal__title">New Place</h3>
+        <form name="modalForm" action="#" class="modal__form">
+          <input
+            type="text"
+            name="title"
+            class="modal__input"
+            id="modal-title-input"
+            value=""
+            placeholder="Title"
+          />
+
+          <input
+            type="text"
+            name="url"
+            class="modal__input"
+            id="modal-url-input"
+            value=""
+            placeholder="Image URL"
+          />
+          <button
+            class="modal__button"
+            id="card-modal-submit-button"
+            type="submit"
+          >
             Save
           </button>
         </form>
