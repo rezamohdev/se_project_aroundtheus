@@ -112,9 +112,18 @@
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
+        <button
+          type="button"
+          class="card__delete-button"
+          aria-label="Remove"
+        ></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button type="button" class="card__button" aria-label="Like"></button>
+          <button
+            type="button"
+            class="card__like-button"
+            aria-label="Like"
+          ></button>
         </div>
       </li>
     </template>
