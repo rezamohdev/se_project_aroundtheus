@@ -150,13 +150,10 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+    height: 45px;
   }
   .modal__input {
     max-width: 238px;
-  }
-
-  .modal__button {
-    height: 45px;
   }
   .modal__close {
     height: 25px;
