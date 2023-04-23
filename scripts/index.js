@@ -25,6 +25,14 @@ const initialCards = [
     {
         name: "Lago di Braies",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
+    },
+    {
+        name: "Älvsbyn kommune, Schweden",
+        link: "https://images.unsplash.com/photo-1681813952538-5fb12a58e448?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+    },
+    {
+        name: "China, Unknown town",
+        link: "https://images.unsplash.com/photo-1681797485212-7491d3f3619c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
     }
 ];
 
@@ -33,10 +41,17 @@ const initialCards = [
 
 const profileEditButton = document.querySelector('#profile-edit-button');
 const cardAddButton = document.querySelector('#profile-add-button');
+
+// Modala
 const profileModal = document.querySelector('#profile-modal');
 const cardModal = document.querySelector('#card-modal');
+const imageModal = document.querySelector('#image-modal');
+const modalImageElement = document.querySelector('.modal__image');
+const modalCaptionElement = document.querySelector('.modal__caption');
+
 const closeModalButton = document.querySelector('#modal-close');
 const closeCardModalButton = cardModal.querySelector('#card-modal-close');
+const closeImageModalButton = imageModal.querySelector('#image-modal-close');
 const profileTitle = document.querySelector('#profile-title');
 const profileDescription = document.querySelector('#profile-description');
 const newCardTitle = cardModal.querySelector('#modal-title-input');
@@ -91,6 +106,17 @@ function getCardElement(cardData) {
     cardTitleElement.textContent = cardData.name;
     cardImageElement.src = cardData.link;
     cardImageElement.alt = cardData.name;
+
+
+    cardImageElement.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal(imageModal);
+        modalCaptionElement.textContent = cardData.name;
+        modalImageElement.src = cardData.link;
+        modalImageElement.alt = cardData.name;
+
+
+    });
     return cardElement;
 }
 
@@ -121,6 +147,7 @@ cardAddButton.addEventListener('click', () => openModal(cardModal));
 
 closeModalButton.addEventListener('click', () => closeModal(profileModal));
 closeCardModalButton.addEventListener('click', () => closeModal(cardModal));
+closeImageModalButton.addEventListener('click', () => closeModal(imageModal));
 
 
 modalProfileForm.addEventListener('submit', handleProfileFormSubmit);

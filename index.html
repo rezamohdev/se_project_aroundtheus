@@ -73,6 +73,7 @@
         </form>
       </div>
     </div>
+    <!-- card modal -->
     <div class="modal" id="card-modal">
       <div class="modal__container">
         <button
@@ -109,6 +110,20 @@
         </form>
       </div>
     </div>
+    <!-- Image modal -->
+    <div class="modal image__modal" id="image-modal">
+      <div class="modal__container modal__type_image">
+        <button
+          type="button"
+          class="modal__close modal__close-type_image"
+          id="image-modal-close"
+        ></button>
+        <img src="" alt="" class="modal__image" />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
+
+    <!-- template for acrds -->
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
