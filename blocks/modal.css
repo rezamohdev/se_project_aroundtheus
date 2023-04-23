@@ -26,7 +26,7 @@
   position: relative;
   padding: 36px;
 }
-.modal__type_image {
+.modal__type-image {
   background: none;
   padding: 0;
   max-height: 75vh;
@@ -128,10 +128,9 @@
     margin: auto;
     height: auto;
   }
-  .modal__type_image {
+  .modal__type-image {
     padding: 0;
     width: 75vw;
-    /* margin: auto 20px; */
     max-width: 100%;
   }
   .image__modal {
@@ -159,9 +158,5 @@
     height: 25px;
     left: calc(100% - 35px);
     bottom: calc(100% + 13px);
-  }
-  .modal__close-type_image {
-    left: calc(100% - 8px);
-    bottom: calc(100% + 5px);
   }
 }
