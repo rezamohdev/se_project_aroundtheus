@@ -117,6 +117,13 @@
 .modal__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+.modal__error_visible {
+  display: block;
+  color: red;
+}
+.modal__button_type_error {
+  border-bottom: 1px solid red;
+}
 @media screen and (max-width: 627px) {
   .modal_opened {
     justify-content: center;

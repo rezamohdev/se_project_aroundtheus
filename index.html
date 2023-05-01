@@ -49,7 +49,7 @@
       <div class="modal__container">
         <button type="button" class="modal__close" id="modal-close"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <form name="modalForm" action="#" class="modal__form">
+        <form name="modalForm" action="#" class="modal__form" novalidate>
           <input
             type="text"
             name="title"
@@ -57,7 +57,11 @@
             id="modal-name"
             value=""
             placeholder="Name"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__error" id="modal-name-error"></span>
 
           <input
             type="text"
@@ -66,7 +70,11 @@
             id="modal-description"
             value=""
             placeholder="Description"
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span class="modal__error" id="modal-description-error"></span>
           <button class="modal__button" id="modal-submit-button" type="submit">
             Save
           </button>
@@ -143,5 +151,6 @@
       </li>
     </template>
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>
