@@ -24,12 +24,40 @@ function checkInputValidty(formEl, inputEl, options) {
     }
 }
 
+function hasInvalidInput(inputList) {
+    return !inputList.every((inputEl) => inputEl.validity.valid);
+}
+
+//  disble button if at least one of the inputs are invalid
+function disableButton(submitButton, inactiveButtonClass) {
+    submitButton.classList.add(inactiveButtonClass);
+    return submitButton.disabled = true;
+}
+
+// enable the button if all of inputs are valid
+function enableButton(submitButton, inactiveButtonClass) {
+    submitButton.classList.remove(inactiveButtonClass);
+    return submitButton.disabled = false;
+}
+
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+    if (hasInvalidInput(inputEls)) {
+        disableButton(submitButton, inactiveButtonClass);
+        return;
+    } else {
+
+        disableButton(submitButton, inactiveButtonClass);
+    }
+
+}
 function setEventListeners(formEl, options) {
     const { inputSelector } = options;
-    const inputEls = [...document.querySelectorAll(options.inputSelector)];
+    const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
+    const submitButton = formEl.querySelector('.modal__button');
     inputEls.forEach(function (inputEl) {
         inputEl.addEventListener("input", function (e) {
             checkInputValidty(formEl, inputEl, options);
+            toggleButtonState(inputEls, submitButton, options);
         });
     });
 }
