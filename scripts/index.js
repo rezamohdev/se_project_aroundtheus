@@ -78,6 +78,12 @@ function handleNewCardFormSubmit(evt) {
     closeModal(cardModal);
 }
 
+function handleEscape(e, modal) {
+    if (e.key === "Escape") {
+        closeModal(modal);
+    }
+}
+
 
 
 // -------------------------- functoins --------------------------------
@@ -112,10 +118,12 @@ function getCardElement(cardData) {
 
 function closeModal(modal) {
     modal.classList.remove('modal_opened');
+    document.removeEventListener('keydown', (e) => handleEscape(e, modal))
 }
 
 function openModal(modal) {
     modal.classList.add('modal_opened');
+    document.addEventListener('keydown', (e) => handleEscape(e, modal))
 
 
 }
@@ -141,11 +149,6 @@ profileModal.addEventListener('click', (e) => {
         closeModal(profileModal);
     }
 });
-profileModal.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
-        closeModal(profileModal);
-    }
-});
 
 imageModal.addEventListener('click', (e) => {
     if (e.target === imageModal) {
@@ -153,20 +156,8 @@ imageModal.addEventListener('click', (e) => {
     }
 });
 
-imageModal.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
-        closeModal(imageModal);
-    }
-});
-
 cardModal.addEventListener('click', (e) => {
     if (e.target === cardModal) {
-        closeModal(cardModal);
-    }
-});
-
-cardModal.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
         closeModal(cardModal);
     }
 });
