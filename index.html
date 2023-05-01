@@ -50,31 +50,35 @@
         <button type="button" class="modal__close" id="modal-close"></button>
         <h3 class="modal__title">Edit profile</h3>
         <form name="modalForm" action="#" class="modal__form" novalidate>
-          <input
-            type="text"
-            name="title"
-            class="modal__input"
-            id="modal-name"
-            value=""
-            placeholder="Name"
-            required
-            minlength="2"
-            maxlength="40"
-          />
-          <span class="modal__error" id="modal-name-error"></span>
+          <label for="modal-name" class="modal__label">
+            <input
+              type="text"
+              name="title"
+              class="modal__input"
+              id="modal-name"
+              value=""
+              placeholder="Name"
+              required
+              minlength="2"
+              maxlength="40"
+            />
+            <span class="modal__error" id="modal-name-error"></span>
+          </label>
 
-          <input
-            type="text"
-            name="description"
-            class="modal__input"
-            id="modal-description"
-            value=""
-            placeholder="Description"
-            required
-            minlength="2"
-            maxlength="200"
-          />
-          <span class="modal__error" id="modal-description-error"></span>
+          <label for="modal-description" class="modal__label">
+            <input
+              type="text"
+              name="description"
+              class="modal__input"
+              id="modal-description"
+              value=""
+              placeholder="Description"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <span class="modal__error" id="modal-description-error"></span>
+          </label>
           <button class="modal__button" id="modal-submit-button" type="submit">
             Save
           </button>
@@ -91,27 +95,37 @@
         ></button>
         <h3 class="modal__title">New Place</h3>
         <form name="modalForm" action="#" class="modal__form">
-          <input
-            type="text"
-            name="title"
-            class="modal__input"
-            id="modal-title-input"
-            value=""
-            placeholder="Title"
-          />
-
-          <input
-            type="text"
-            name="url"
-            class="modal__input"
-            id="modal-url-input"
-            value=""
-            placeholder="Image URL"
-          />
+          <label for="modal-title-input" class="modal__label">
+            <input
+              type="text"
+              name="title"
+              class="modal__input"
+              id="modal-title-input"
+              value=""
+              placeholder="Title"
+              required
+              minlength="1"
+              maxlength="30"
+            />
+            <span class="modal__error" id="modal-title-input-error"></span>
+          </label>
+          <label class="modal__label" for="modal-url-input">
+            <input
+              type="url"
+              name="url"
+              class="modal__input"
+              id="modal-url-input"
+              value=""
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="modal-url-input-error"></span>
+          </label>
           <button
-            class="modal__button"
+            class="modal__button modal__button_disabled"
             id="card-modal-submit-button"
             type="submit"
+            disabled
           >
             Save
           </button>

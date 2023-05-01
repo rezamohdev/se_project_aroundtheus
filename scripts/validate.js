@@ -28,26 +28,17 @@ function hasInvalidInput(inputList) {
     return !inputList.every((inputEl) => inputEl.validity.valid);
 }
 
-//  disble button if at least one of the inputs are invalid
-function disableButton(submitButton, inactiveButtonClass) {
-    submitButton.classList.add(inactiveButtonClass);
-    return submitButton.disabled = true;
-}
-
-// enable the button if all of inputs are valid
-function enableButton(submitButton, inactiveButtonClass) {
-    submitButton.classList.remove(inactiveButtonClass);
-    return submitButton.disabled = false;
-}
 
 function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
     if (hasInvalidInput(inputEls)) {
-        disableButton(submitButton, inactiveButtonClass);
+        submitButton.classList.add(inactiveButtonClass);
+        submitButton.disabled = true;
         return;
-    } else {
-
-        disableButton(submitButton, inactiveButtonClass);
     }
+
+    submitButton.classList.remove(inactiveButtonClass);
+    submitButton.disabled = false;
+
 
 }
 function setEventListeners(formEl, options) {

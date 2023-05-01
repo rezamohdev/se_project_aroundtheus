@@ -34,7 +34,7 @@ const initialCards = [
 const profileEditButton = document.querySelector('#profile-edit-button');
 const cardAddButton = document.querySelector('#profile-add-button');
 
-// Modala
+// Modal
 const profileModal = document.querySelector('#profile-modal');
 const cardModal = document.querySelector('#card-modal');
 const imageModal = document.querySelector('#image-modal');
@@ -106,8 +106,6 @@ function getCardElement(cardData) {
         modalCaptionElement.textContent = cardData.name;
         modalImageElement.src = cardData.link;
         modalImageElement.alt = cardData.name;
-
-
     });
     return cardElement;
 }
@@ -119,12 +117,12 @@ function closeModal(modal) {
 function openModal(modal) {
     modal.classList.add('modal_opened');
 
+
 }
 
 function renderCard(cardData, list) {
     const cardElement = getCardElement(cardData);
     list.prepend(cardElement);
-
 }
 
 
@@ -137,10 +135,45 @@ profileEditButton.addEventListener('click', () => {
 });
 cardAddButton.addEventListener('click', () => openModal(cardModal));
 
+
+profileModal.addEventListener('click', (e) => {
+    if (e.target === profileModal) {
+        closeModal(profileModal);
+    }
+});
+profileModal.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        closeModal(profileModal);
+    }
+});
+
+imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) {
+        closeModal(imageModal);
+    }
+});
+
+imageModal.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        closeModal(imageModal);
+    }
+});
+
+cardModal.addEventListener('click', (e) => {
+    if (e.target === cardModal) {
+        closeModal(cardModal);
+    }
+});
+
+cardModal.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        closeModal(cardModal);
+    }
+});
+
 closeModalButton.addEventListener('click', () => closeModal(profileModal));
 closeCardModalButton.addEventListener('click', () => closeModal(cardModal));
 closeImageModalButton.addEventListener('click', () => closeModal(imageModal));
-
 
 modalProfileForm.addEventListener('submit', handleProfileFormSubmit);
 modalCardForm.addEventListener('submit', handleNewCardFormSubmit);
