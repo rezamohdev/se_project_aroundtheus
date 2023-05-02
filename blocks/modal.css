@@ -92,7 +92,7 @@
 .modal__input {
   width: 100%;
   font-family: "Inter", Arial, sans-serif;
-  height: 28px;
+  height: auto;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

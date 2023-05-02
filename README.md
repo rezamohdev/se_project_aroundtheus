@@ -1,5 +1,11 @@
 # Project 3: Around The U.S.
 
+### Screenshots of Project
+
+![Design preview for Desktop](./desgin/desktop.png)
+![Design preview for Tablet](./desgin/tablet.png)
+![Design preview for Mobile](./desgin/mobile.png)
+
 ### Overview
 
 - Intro
