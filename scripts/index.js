@@ -51,6 +51,7 @@ const newCardUrl = cardModal.querySelector('#modal-url-input');
 const modalNameInput = document.querySelector('#modal-name');
 const modalDescriptionInput = document.querySelector('#modal-description');
 const modalSubmitButton = document.querySelector('#modal-submit-button');
+const cardModalSubmitButton = document.querySelector('#card-modal-submit-button');
 const cardListElement = document.querySelector('.gallery__cards');
 const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 
@@ -75,6 +76,10 @@ function handleNewCardFormSubmit(evt) {
     const link = newCardUrl.value;
     renderCard({ name, link }, cardListElement);
     modalCardForm.reset();
+
+    cardModalSubmitButton.disabled = true;
+    cardModalSubmitButton.classList.add('modal__button_disabled');
+
     closeModal(cardModal);
 }
 
@@ -84,6 +89,12 @@ function handleEscape(e, modal) {
     }
 }
 
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+        const openedModal = document.querySelector('.modal_opened'); // find the opened popup
+        closeModal(openedModal);
+    }
+}
 
 
 // -------------------------- functoins --------------------------------
@@ -118,12 +129,12 @@ function getCardElement(cardData) {
 
 function closeModal(modal) {
     modal.classList.remove('modal_opened');
-    document.removeEventListener('keydown', (e) => handleEscape(e, modal))
+    document.removeEventListener('keydown', closeByEscape)
 }
 
 function openModal(modal) {
     modal.classList.add('modal_opened');
-    document.addEventListener('keydown', (e) => handleEscape(e, modal))
+    document.addEventListener('keydown', closeByEscape)
 
 
 }
