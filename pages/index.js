@@ -1,3 +1,4 @@
+import Card from "../components/Card.js";
 const initialCards = [
     {
         name: "Yosemite Valley",
@@ -28,8 +29,13 @@ const initialCards = [
     }
 ];
 
+const cardData = {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
+}
 
-
+const imgcard = new Card(cardData, '#card-template');
+imgcard.getView();
 
 const profileEditButton = document.querySelector('#profile-edit-button');
 const cardAddButton = document.querySelector('#profile-add-button');
@@ -102,16 +108,16 @@ function getCardElement(cardData) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImageElement = cardElement.querySelector('.card__image');
     const cardTitleElement = cardElement.querySelector('.card__title');
-    const likeButton = cardElement.querySelector('.card__like-button');
-    const deleteButton = cardElement.querySelector('.card__delete-button');
+    // const likeButton = cardElement.querySelector('.card__like-button');
+    // const deleteButton = cardElement.querySelector('.card__delete-button');
 
-    likeButton.addEventListener('click', () => {
-        likeButton.classList.toggle('card__like-button_active')
-    });
+    // likeButton.addEventListener('click', () => {
+    //     likeButton.classList.toggle('card__like-button_active')
+    // });
 
-    deleteButton.addEventListener('click', () => {
-        cardElement.remove();
-    });
+    // deleteButton.addEventListener('click', () => {
+    //     cardElement.remove();
+    // });
     cardTitleElement.textContent = cardData.name;
     cardImageElement.src = cardData.link;
     cardImageElement.alt = cardData.name;
