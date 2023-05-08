@@ -31,9 +31,7 @@ export default class Card {
 
     getView() {
         // I suppose the retrieve card view
-        this._cardElement = document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);
-        console.log(this._cardElement);
-        // then set event listners
+        this._cardElement = document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);        // then set event listners
         this._setEventListeners();        // return the card
     }
 }

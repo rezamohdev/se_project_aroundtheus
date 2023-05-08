@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 const initialCards = [
     {
         name: "Yosemite Valley",
@@ -102,6 +103,23 @@ function closeByEscape(evt) {
     }
 }
 
+// ==================================================================
+//  validation
+// ==================================================================
+
+const validationSettings = {
+    formSelector: ".modal__form",
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__button",
+    inactiveButtonClass: "modal__button_disabled",
+    inputErrorClass: "modal__button_type_error",
+    errorClass: "modal__error_visible"
+};
+
+const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
+const addFormValidator = new FormValidator(validationSettings, modalCardForm);
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 // -------------------------- functoins --------------------------------
 function getCardElement(cardData) {
