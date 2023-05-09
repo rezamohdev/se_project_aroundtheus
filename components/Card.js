@@ -1,3 +1,5 @@
+import { openModal } from "../utils/utils.js";
+import { imageModal, modalCaptionElement, modalImageElement } from '../pages/index.js';
 export default class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
@@ -8,9 +10,7 @@ export default class Card {
     _setEventListeners() {
         const likeButton = this._elment.querySelector('.card__like-button');
         const deleteButton = this._elment.querySelector('.card__delete-button');
-        const modalImageElement = document.querySelector('.modal__image');
-        const modalCaptionElement = document.querySelector('.modal__caption');
-        const imageModal = document.querySelector('#image-modal');
+
 
 
 
@@ -30,25 +30,14 @@ export default class Card {
     }
     _handlePrveviewImage(e) {
         e.preventDefault();
-        this._openModal(imageModal);
-        modalCaptionElement.textContent = cardData.name;
-        modalImageElement.src = cardData.link;
-        modalImageElement.alt = cardData.name; _elment
+        openModal(imageModal);
+        modalCaptionElement.textContent = this._name;
+        modalImageElement.src = this._link;
+        modalImageElement.alt = this._name;
     }
 
     _getTemplate() {
         return document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);
-    }
-    _closeModal(modal) {
-        modal.classList.remove('modal_opened');
-        document.removeEventListener('keydown', closeByEscape)
-    }
-
-    _openModal(modal) {
-        modal.classList.add('modal_opened');
-        document.addEventListener('keydown', closeByEscape)
-
-
     }
 
     getView() {
