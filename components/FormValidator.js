@@ -36,7 +36,6 @@ class FormValidator {
         this._buttonElement.disabled = false;
     }
 
-
     _checkInputValidty(inputElement) {
         if (!inputElement.validity.valid) {
             this._showInputError(inputElement);

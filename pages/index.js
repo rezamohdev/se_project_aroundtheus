@@ -35,8 +35,7 @@ const cardData = {
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
 }
 
-const imgcard = new Card(cardData, '#card-template');
-imgcard.getView();
+
 
 const profileEditButton = document.querySelector('#profile-edit-button');
 const cardAddButton = document.querySelector('#profile-add-button');
@@ -136,9 +135,9 @@ function getCardElement(cardData) {
     // deleteButton.addEventListener('click', () => {
     //     cardElement.remove();
     // });
-    cardTitleElement.textContent = cardData.name;
-    cardImageElement.src = cardData.link;
-    cardImageElement.alt = cardData.name;
+    // cardTitleElement.textContent = cardData.name;
+    // cardImageElement.src = cardData.link;
+    // cardImageElement.alt = cardData.name;
 
 
     cardImageElement.addEventListener('click', (event) => {
@@ -164,8 +163,8 @@ function openModal(modal) {
 }
 
 function renderCard(cardData, list) {
-    const cardElement = getCardElement(cardData);
-    list.prepend(cardElement);
+    const card = new Card(cardData, '#card-template');
+    list.prepend(card.getView());
 }
 
 
