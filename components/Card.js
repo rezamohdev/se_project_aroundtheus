@@ -6,13 +6,12 @@ export default class Card {
     }
 
     _setEventListeners() {
-        //     const likeButton = cardElement.querySelector('.card__like-button');
         const likeButton = this._cardElement.querySelector('.card__like-button');
-        // const deleteButton = cardElement.querySelector('.card__delete-button');
         const deleteButton = this._cardElement.querySelector('.card__delete-button');
 
         likeButton.addEventListener('click', () => {
             console.log('clicked like button');
+            console.log(likeButton);
             this._handleLikeIcon();
         });
         deleteButton.addEventListener('click', function () {
@@ -35,3 +34,4 @@ export default class Card {
         this._setEventListeners();        // return the card
     }
 }
+
