@@ -85,6 +85,7 @@ function handleNewCardFormSubmit(evt) {
     renderCard({ name, link }, cardListElement);
     modalCardForm.reset();
 
+    addFormValidator.toggleButtonState();
     closeModal(cardModal);
 }
 // ==================================================================

@@ -48,7 +48,7 @@ export default class Card {
 
         this._cardImage.src = this._link;
         this._cardTitle.textContent = this._name;
-        this._cardTitle.alt = this._name;
+        this._cardImage.alt = this._name;
 
         // then set event listners
         this._setEventListeners();
