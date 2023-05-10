@@ -9,13 +9,6 @@ const openModal = (modal) => {
 
 
 }
-
-const handleEscape = (e, modal) => {
-    if (e.key === "Escape") {
-        closeModal(modal);
-    }
-}
-
 const closeByEscape = (evt) => {
     if (evt.key === 'Escape') {
         const openedModal = document.querySelector('.modal_opened'); // find the opened popup
@@ -23,4 +16,4 @@ const closeByEscape = (evt) => {
     }
 }
 
-export { closeModal, openModal, handleEscape, closeByEscape };
+export { closeModal, openModal, closeByEscape };

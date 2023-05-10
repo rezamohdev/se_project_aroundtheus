@@ -85,9 +85,6 @@ function handleNewCardFormSubmit(evt) {
     renderCard({ name, link }, cardListElement);
     modalCardForm.reset();
 
-    cardModalSubmitButton.disabled = true;
-    cardModalSubmitButton.classList.add('modal__button_disabled');
-
     closeModal(cardModal);
 }
 // ==================================================================
