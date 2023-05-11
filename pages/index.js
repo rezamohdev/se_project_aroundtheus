@@ -85,7 +85,7 @@ function handleNewCardFormSubmit(evt) {
     renderCard({ name, link }, cardListElement);
     modalCardForm.reset();
 
-    addFormValidator._toggleButtonState();
+    addFormValidator.toggleButtonState();
     closeModal(cardModal);
 }
 // ==================================================================
@@ -121,7 +121,6 @@ profileEditButton.addEventListener('click', () => {
     modalDescriptionInput.value = profileDescription.textContent;
 });
 cardAddButton.addEventListener('click', () => {
-    modalCardForm.reset();
     openModal(cardModal)
 });
 
