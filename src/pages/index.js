@@ -5,7 +5,8 @@ import {
     openModal,
     closeModal
 } from "../utils/utils.js";
-// Card dats
+import "./index.css";
+
 const initialCards = [
     {
         name: "Yosemite Valley",

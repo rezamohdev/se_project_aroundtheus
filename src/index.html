@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Around the us</title>
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img src="./images/logo.svg" alt="header logo" class="header__logo" />
+        <img
+          src="<%=  require('./images/logo.svg') %>"
+          alt="header logo"
+          class="header__logo"
+        />
       </header>
       <main class="main">
         <section class="profile page__section">
           <img
-            src="./images/jacques-cousteau.png"
+            src="<%= require('./images/jacques-cousteau.png') %>"
             alt="user profile picture"
             class="profile__avatar"
           />
@@ -164,6 +167,5 @@
         </div>
       </li>
     </template>
-    <script src="pages/index.js" type="module"></script>
   </body>
 </html>
