@@ -5,8 +5,8 @@ export default class Section {
         this._container = document.querySelector(cardSelector);
     }
 
-    addItem() {
-
+    addItem(element) {
+        this._container.append(element);
     }
     renderItems() {
 

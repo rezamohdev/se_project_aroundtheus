@@ -1,11 +1,13 @@
 // Imports
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import {
-    openModal,
-    closeModal
-} from "../utils/utils.js";
+// import {
+//     openModal,
+//     closeModal
+// } from "../utils/utils.js";
 import "./index.css";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 const initialCards = [
     {
@@ -101,11 +103,24 @@ const validationSettings = {
     inputErrorClass: "modal__button_type_error",
     errorClass: "modal__error_visible"
 };
+
 // instantiating card objects
 const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
+const imagepreviewModal = new PopupWithImage(imageModal);
+const userFormModal = new PopupWithForm({
+    popupSelector: modalProfileForm, handleNewCardFormSubmit: (data) => {
+        const imageCard = renderCard(data);
+    }
+});
+const ImageFormModal = new PopupWithImage(modalCardForm);
+
+// setting event listeners
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+imagepreviewModal.setEventListeners();
+userFormModal.setEventListeners();
+ImageFormModal.setEventListeners();
 
 function renderCard(cardData, list) {
     const card = new Card(cardData, '#card-template');
