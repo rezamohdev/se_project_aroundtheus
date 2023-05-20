@@ -10,10 +10,10 @@ export default class Popup {
     }
     setEventListeners() { }
     open() {
-        this._popupElement.classList.remove('modal_opened');
+        this._popupElement.classList.add('modal_opened');
     }
     close() {
-        this._popupElement.classList.add('modal_opened');
+        this._popupElement.classList.remove('modal_opened');
 
     }
 }
