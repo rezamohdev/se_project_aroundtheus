@@ -11,12 +11,10 @@ export default class UserInfo {
         }
     }
 
-    setUserInfo({ userName, userDescription }) {
-        console.log(this._userNameElement);
-        console.log(this._userDescriptionElement);
-        // this._userNameElement = userName;
-        // this._userDescriptionElement = userDescription;
-        this._userNameElement.textContent = userName;
-        this._userDescriptionElement.textContent = userDescription;
+    setUserInfo({ title, description }) {
+        this._userNameElement.textContent = title;
+        this._userDescriptionElement.textContent = description;
+        console.log(this._userNameElement.textContent);
+        console.log(this._userDescriptionElement.textContent);
     }
 }

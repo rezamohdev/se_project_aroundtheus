@@ -63,38 +63,18 @@ const userDescriptionSelector = '#profile-description';
 const profileDescription = document.querySelector(userDescriptionSelector);
 const newCardTitle = cardModal.querySelector('#modal-title-input');
 const newCardUrl = cardModal.querySelector('#modal-url-input');
-const modalNameInput = document.querySelector('#modal-name');
-const modalDescriptionInput = document.querySelector('#modal-description');
+const modalNameInputSelector = '#modal-name';
+const modalNameInput = document.querySelector(modalNameInputSelector);
+const modalDescriptionInputSelector = '#modal-description';
+const modalDescriptionInput = document.querySelector(modalDescriptionInputSelector);
 const modalSubmitButton = document.querySelector('#modal-submit-button');
 const cardModalSubmitButton = document.querySelector('#card-modal-submit-button');
 const cardListElement = document.querySelector('.gallery__cards');
 const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
-
-
-
 // forms
 const modalProfileForm = profileModal.querySelector('.modal__form');
 const modalCardForm = cardModal.querySelector('.modal__form');
 
-
-// -------------------------- event handlers --------------------------------
-// function handleProfileFormSubmit(evt) {
-//     evt.preventDefault();
-//     profileTitle.textContent = modalNameInput.value;
-//     profileDescription.textContent = modalDescriptionInput.value;
-//     modalWithFormUser.close();
-// }
-
-// function handleNewCardFormSubmit(evt) {
-//     evt.preventDefault();
-//     const name = newCardTitle.value;
-//     const link = newCardUrl.value;
-//     renderCard({ name, link }, cardListElement);
-//     modalCardForm.reset();
-
-//     addFormValidator.toggleButtonState();
-//     closeModal(cardModal);
-// }
 // ==================================================================
 //  validation
 // ==================================================================
@@ -109,21 +89,19 @@ const validationSettings = {
 };
 
 // instantiating card objects
-// const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
+const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
 // const imagepreviewModal = new PopupWithImage(imageModal);
 const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector });
 const modalWithFormUser = new PopupWithForm({
-    popupSelector: profileModalSelector, handleFormSubmit: () => {
-        const userTitle = modalNameInput.value;
-
-        console.log(userTitle);
-        const userJob = modalDescriptionInput.value;
-        userInfo.setUserInfo(userTitle, userJob);
-
-        addFormValidator.toggleButtonState();
+    popupSelector: profileModalSelector,
+    handleFormSubmit: (data) => {
+        userInfo.setUserInfo(data);
+        // addFormValidator.toggleButtonState();
     }
 });
+
+
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector, handleFormSubmit: () => {
         const name = newCardTitle.value;
@@ -133,14 +111,15 @@ const modalWithFormImage = new PopupWithForm({
         addFormValidator.toggleButtonState();
     }
 });
+
 // const modalWithFormImage = new PopupWithImage(modalCardForm);
 
 // setting event listeners
-// editFormValidator.enableValidation();
+editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 // imagepreviewModal.setEventListeners();
-// userFormModal.setEventListeners();
 // modalWithFormImage.setEventListeners();
+modalWithFormUser.setEventListeners();
 
 function renderCard(cardData, list) {
     const card = new Card(cardData, '#card-template');
@@ -163,9 +142,11 @@ cardAddButton.addEventListener('click', () => {
 
 profileModal.addEventListener('click', (e) => {
     if (e.target === profileModal) {
-        closeModal(profileModal);
+        // closeModal(profileModal);
+        modalWithFormUser.close();
     }
 });
+
 
 imageModal.addEventListener('click', (e) => {
     if (e.target === imageModal) {
@@ -180,7 +161,7 @@ cardModal.addEventListener('click', (e) => {
 });
 
 // Listening to events
-closeModalButton.addEventListener('click', () => closeModal(profileModal));
+closeModalButton.addEventListener('click', () => modalWithFormUser.close());
 closeCardModalButton.addEventListener('click', () => modalWithFormImage.close());
 closeImageModalButton.addEventListener('click', () => closeModal(imageModal));
 
