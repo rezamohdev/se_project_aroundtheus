@@ -1,10 +1,12 @@
 import { openModal } from "../utils/utils.js";
 import { imageModal, modalCaptionElement, modalImageElement } from '../pages/index.js';
+import Popup from "./Popup.js";
 export default class Card {
-    constructor(data, cardSelector) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor({ cardData, handleImageClick }, cardSelector) {
+        this._name = cardData.name;
+        this._link = cardData.link;
         this._cardSelector = cardSelector;
+        this._handleImageClick = handleImageClick;
     }
 
     _setEventListeners() {

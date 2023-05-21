@@ -35,9 +35,6 @@ class FormValidator {
         this._buttonElement.classList.remove(this._inactiveButtonClass);
         this._buttonElement.disabled = false;
     }
-    // toggleButtonState() {
-    //     return this._toggleButtonState();
-    // }
 
     _checkInputValidty(inputElement) {
         if (!inputElement.validity.valid) {

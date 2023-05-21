@@ -16,4 +16,5 @@ const closeByEscape = (evt) => {
     }
 }
 
+
 export { closeModal, openModal, closeByEscape };
