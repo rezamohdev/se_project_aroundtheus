@@ -28,12 +28,24 @@ class FormValidator {
 
     toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add(this._inactiveButtonClass);
-            this._buttonElement.disabled = true;
+            this._disableButton();
             return;
         }
         this._buttonElement.classList.remove(this._inactiveButtonClass);
         this._buttonElement.disabled = false;
+    }
+
+    resetValidation() {
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement);
+        });
+        this._disableButton();
+        this._formElement.reset();
+    }
+
+    _disableButton() {
+        this._buttonElement.classList.add(this._inactiveButtonClass);
+        this._buttonElement.disabled = true;
     }
 
     _checkInputValidty(inputElement) {

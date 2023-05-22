@@ -101,12 +101,12 @@ const modalWithFormUser = new PopupWithForm({
 });
 
 const modalWithFormImage = new PopupWithForm({
-    popupSelector: cardModalSelector, handleFormSubmit: () => {
-        const name = newCardTitle.value;
-        const link = newCardUrl.value;
+    popupSelector: cardModalSelector, handleFormSubmit: (inputValues) => {
+        const name = inputValues.title;
+        const link = inputValues.url;
         renderCard({ name, link }, cardListElement);
 
-        // addFormValidator.toggleButtonState();
+        // addFormValidator.resetValidation();
     }
 });
 
@@ -140,6 +140,7 @@ profileEditButton.addEventListener('click', () => {
     modalDescriptionInput.value = profileDescription.textContent;
 });
 cardAddButton.addEventListener('click', () => {
+    addFormValidator.resetValidation();
     modalWithFormImage.open();
 });
 
