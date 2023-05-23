@@ -18,7 +18,6 @@ export default class PopupWithForm extends Popup {
             this._newData[inputElement.name] = inputElement.value;
         });
         return this._newData;
-
     }
     setEventListeners() {
         super.setEventListeners();

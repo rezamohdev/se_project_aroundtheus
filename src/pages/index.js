@@ -5,6 +5,7 @@ import "./index.css";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Section from "../components/section.js";
 
 const initialCards = [
     {
@@ -66,15 +67,12 @@ const modalDescriptionInputSelector = '#modal-description';
 const modalDescriptionInput = document.querySelector(modalDescriptionInputSelector);
 const modalSubmitButton = document.querySelector('#modal-submit-button');
 const cardModalSubmitButton = document.querySelector('#card-modal-submit-button');
-const cardListElement = document.querySelector('.gallery__cards');
+const cardListSelector = '.gallery__cards';
+const cardListElement = document.querySelector(cardListSelector);
 const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 // forms
 const modalProfileForm = profileModal.querySelector('.modal__form');
 const modalCardForm = cardModal.querySelector('.modal__form');
-
-// ==================================================================
-//  validation
-// ==================================================================
 
 const validationSettings = {
     formSelector: ".modal__form",
@@ -106,9 +104,14 @@ const modalWithFormImage = new PopupWithForm({
         const link = inputValues.url;
         renderCard({ name, link }, cardListElement);
 
-        // addFormValidator.resetValidation();
     }
 });
+
+const renderImages = new Section({
+    data: initialCards,
+    renderer: renderCard
+}, cardListSelector);
+renderImages.renderItems();
 
 // setting event listeners
 editFormValidator.enableValidation();
@@ -118,22 +121,17 @@ modalWithFormUser.setEventListeners();
 modalWithFormImage.setEventListeners();
 modalWithImage.setEventListeners();
 
-function renderCard(cardData, list) {
+function renderCard(cardData) {
     const card = new Card({
         cardData,
         handleImageClick: (data) => {
-            modalWithImage.open({ link, name });
-            console.log(data);
+            modalWithImage.open(data);
         }
     }, '#card-template');
-    list.prepend(card.getView());
+    // list.prepend(card.getView());
+    const cardImage = card.getView();
+    renderImages.addItem(cardImage);
 }
-
-
-// ==================================================================
-//  Event Listeners
-// ==================================================================
-
 profileEditButton.addEventListener('click', () => {
     modalWithFormUser.open();
     modalNameInput.value = profileTitle.textContent;
@@ -143,15 +141,5 @@ cardAddButton.addEventListener('click', () => {
     addFormValidator.resetValidation();
     modalWithFormImage.open();
 });
+// initialCards.forEach((cardData) => renderCard(cardData, cardListElement))
 
-// ==================================================================
-//  Rendering cards from array
-// ==================================================================
-initialCards.forEach((cardData) => renderCard(cardData, cardListElement))
-
-
-export {
-    imageModal,
-    modalCaptionElement,
-    modalImageElement
-};
