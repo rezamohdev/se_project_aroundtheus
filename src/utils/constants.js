@@ -67,7 +67,6 @@ export const cardTemplate = document.querySelector('#card-template').content.fir
 // forms
 export const modalProfileForm = profileModal.querySelector('.modal__form');
 export const modalCardForm = cardModal.querySelector('.modal__form');
-const formValidators = {}
 
 export const validationSettings = {
     formSelector: ".modal__form",

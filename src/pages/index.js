@@ -20,7 +20,6 @@ import {
     validationSettings,
     profileEditButton,
     cardAddButton,
-    formValidators
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
