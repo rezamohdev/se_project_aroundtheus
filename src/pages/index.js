@@ -79,11 +79,12 @@ function createCard(cardData) {
 }
 
 profileEditButton.addEventListener('click', () => {
+    editFormValidator.resetValidation();
     modalWithFormUser.open();
     const userData = userInfo.getUserInfo();
     modalNameInput.value = userData.userName;
     modalDescriptionInput.value = userData.userDescription;
-
+    editFormValidator.toggleButtonState();
 });
 cardAddButton.addEventListener('click', () => {
     addFormValidator.resetValidation();
