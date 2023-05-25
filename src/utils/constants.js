@@ -77,4 +77,4 @@ export const validationSettings = {
     errorClass: "modal__error_visible"
 };
 
-export { initialCards, formValidators };
+export { initialCards };
