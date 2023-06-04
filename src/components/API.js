@@ -16,6 +16,7 @@ export default class Api {
             })
             .then((data) => {
                 console.log(data);
+                return data;
             })
             .catch((err) => {
                 console.error(err);
@@ -35,4 +36,19 @@ export default class Api {
                 console.error(err);
             });
     }
+    addnewCard({ name, link }) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                link
+            })
+        }).catch(err => console.error(err));
+    }
+
+    //     PATCH this._baseUrl/users/me
+    //     userEditProfile() {
+
+    //     }
 }
