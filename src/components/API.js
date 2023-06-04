@@ -1,5 +1,5 @@
 export default class Api {
-    constructor(name, link) {
+    constructor(baseUrl, headers) {
         this._baseUrl = baseUrl,
             this._headers = headers
     }
@@ -7,7 +7,10 @@ export default class Api {
     getInitialCards() {
         return fetch(`https://around.nomoreparties.co/v1/group-12/cards`, {
             method: "GET",
-            headers: "9eeac52f-491b-4cc6-8ef1-69498b3521ca"
+            headers: {
+                authorization: "9eeac52f-491b-4cc6-8ef1-69498b3521ca",
+                "Content-Type": "application/json",
+            },
         })
             .then(res => {
                 if (res.ok) {
@@ -19,13 +22,16 @@ export default class Api {
                 console.log(data);
             })
             .then((err) => {
-                console.error(`Error: ${err}`);
+                console.error(err);
             });
     }
     getUserInfo() {
         return fetch(`https://around.nomoreparties.co/v1/group-12/users/me`, {
             method: "GET",
-            headers: "9eeac52f-491b-4cc6-8ef1-69498b3521ca"
+            headers: {
+                authorization: "9eeac52f-491b-4cc6-8ef1-69498b3521ca",
+                "Content-Type": "application/json",
+            },
         })
             .then(res => {
                 if (res.ok) {
@@ -33,11 +39,8 @@ export default class Api {
                 }
                 return Promise.reject(`Error: ${res.status}`)
             })
-            .then((data) => {
-                console.log(data);
-            })
             .then((err) => {
-                console.error(`Error: ${err}`);
+                console.error(err);
             });
     }
 }
