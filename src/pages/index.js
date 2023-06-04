@@ -23,6 +23,17 @@ import {
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
+import Api from "../components/API.js"
+const api = new Api({
+    // baseUrl: "https://around.nomoreparties.co/v1/group-12",
+    // headers: {
+    //     authorization: "9eeac52f-491b-4cc6-8ef1-69498b3521ca",
+    //     "Content-Type": "application/json"}
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg"
+}
+);
+api.getInitialCards();
 
 // instantiating card objects
 const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
