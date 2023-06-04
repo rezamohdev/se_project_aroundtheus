@@ -57,10 +57,10 @@ const modalWithFormImage = new PopupWithForm({
 
     }
 });
-api.getInitialCards().then((data) => {
-
+api.getInitialCards().then((cardData) => {
+    console.log(cardData);
     const cardSection = new Section({
-        data: data,
+        data: cardData,
         renderer: renderCard
     }, cardListSelector);
     cardSection.renderItems();
