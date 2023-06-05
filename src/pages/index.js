@@ -66,11 +66,15 @@ const modalWithFormUser = new PopupWithForm({
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
-        api.addnewCard({ data }).then(data => { console.log(data); });
+        api.addCard(data).then(data => {
+            console.log(data);
+            // renderCard(data, cardListElement);
+        });
         //     const name = inputValues.title;
         //     const link = inputValues.url;
 
-        //     renderCard({ link, name }, cardListElement);
+
+
 
     }
 });

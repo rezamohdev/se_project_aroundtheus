@@ -22,6 +22,53 @@ export default class Api {
                 console.error(err);
             });
     }
+
+    // addnewCard({ name, link }) {
+    //     return fetch(`${this._baseUrl / cards}`, {
+    //         method: "POST",
+    //         headers: this._headers,
+    //         body: JSON.stringify({
+    //             name: name,
+    //             link: link
+    //         })
+    //     })
+    //         .then(res => {
+    //             if (res.ok) {
+    //                 return res.json();
+    //             }
+    //             return Promise.reject(`Error: ${res.status}`)
+    //         })
+    //         .then((data) => {
+    //             console.log(data);
+    //             return data;
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //         });
+    // }
+    addCard({ name, link }) {
+        return fetch(`${this._baseUrl}`, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`)
+        })
+            .then((data) => {
+                console.log(data);
+                return data;
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+    }
+
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
@@ -36,16 +83,7 @@ export default class Api {
                 console.error(err);
             });
     }
-    addnewCard({ name, link }) {
-        return fetch(`${this._baseUrl}/cards`, {
-            method: "POST",
-            headers: this._headers,
-            body: JSON.stringify({
-                name,
-                link
-            })
-        }).catch(err => console.error(err));
-    }
+
 
     //     PATCH this._baseUrl/users/me
     //     userEditProfile() {
