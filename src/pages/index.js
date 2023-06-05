@@ -55,12 +55,13 @@ const modalWithFormUser = new PopupWithForm({
     popupSelector: profileModalSelector,
     handleFormSubmit: (data) => {
         // userInfo.setUserInfo(data);
-        api.getUserInfo().then(userData => {
-            userInfo.setUserInfo({
-                title: userData.name,
-                description: userData.about
-            });
-        });
+        // api.getUserInfo().then(userData => {
+        //     userInfo.setUserInfo({
+        //         title: userData.name,
+        //         description: userData.about
+        //     });
+        // });
+        api.userEditProfile(data).then(res => { console.log(res); })
     }
 });
 
@@ -114,6 +115,13 @@ function createCard(cardData) {
         handleDeleteClick: () => {
             const id = card.getId();
             api.removeCard(id).then(res => console.log(res));
+        },
+        handleLikeClick: () => {
+            const id = card.getId();
+            api.showLikes(id).then((data) => {
+                console.log(data);
+                card._updateLikes();
+            });
         }
     }, '#card-template');
     return card.getView();

@@ -51,6 +51,23 @@
 .card__like-button_active {
   background-image: url(../images/heart_active.svg);
 }
+.card__like-amount {
+  width: 9px;
+  height: 13px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+  position: absolute;
+  right: 24px;
+  bottom: 15px;
+  margin: 0;
+  margin-top: 30px;
+  padding: 0 6px;
+}
 .card__delete-button {
   position: absolute;
   top: 18px;

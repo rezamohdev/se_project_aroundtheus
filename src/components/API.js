@@ -80,9 +80,40 @@ export default class Api {
             });
     }
 
+    userEditProfile({ title, description }) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: title,
+                about: description
+            })
 
-    //     PATCH this._baseUrl/users/me
-    //     userEditProfile() {
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        })
+            .then((data) => {
+                console.log(data);
+                return data;
+            })
+            .catch(err => { console.error(err); })
+    }
 
-    //     }
+    showLikes(id) {
+        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+            method: "GET",
+            headers: this._headers
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        }).then((likeData) => {
+            console.log(likeData);
+            return likeData;
+        }).catch((err) => console.error(err))
+    }
 }
