@@ -23,37 +23,33 @@ export default class Api {
             });
     }
 
-    // addnewCard({ name, link }) {
-    //     return fetch(`${this._baseUrl / cards}`, {
-    //         method: "POST",
-    //         headers: this._headers,
-    //         body: JSON.stringify({
-    //             name: name,
-    //             link: link
-    //         })
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`)
-    //         })
-    //         .then((data) => {
-    //             console.log(data);
-    //             return data;
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    // }
-    addCard({ name, link }) {
-        return fetch(`${this._baseUrl}`, {
+    addCard({ title, url }) {
+        return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
             headers: this._headers,
             body: JSON.stringify({
-                name: name,
-                link: link
+                name: title,
+                link: url
             })
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`)
+        })
+            .then((data) => {
+                console.log(data);
+                return data;
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+    }
+
+    removeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: "DELETE",
+            headers: this._headers,
         }).then(res => {
             if (res.ok) {
                 return res.json();

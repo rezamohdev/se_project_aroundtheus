@@ -48,6 +48,7 @@ api.getUserInfo().then(userData => {
 });
 
 
+
 const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector });
 
 const modalWithFormUser = new PopupWithForm({
@@ -67,6 +68,7 @@ const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
         api.addCard(data).then(data => {
+
             console.log(data);
             // renderCard(data, cardListElement);
         });
@@ -108,6 +110,10 @@ function createCard(cardData) {
         cardData,
         handleImageClick: (data) => {
             modalWithImage.open(data);
+        },
+        handleDeleteClick: () => {
+            const id = card.getId();
+            api.removeCard(id).then(res => console.log(res));
         }
     }, '#card-template');
     return card.getView();
