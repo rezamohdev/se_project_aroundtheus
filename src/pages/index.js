@@ -118,10 +118,7 @@ function createCard(cardData) {
         },
         handleLikeClick: () => {
             const id = card.getId();
-            api.showLikes(id).then((data) => {
-                console.log(data);
-                card._updateLikes();
-            });
+            api.likeCard(id).then(data => { console.log(data); })
         }
     }, '#card-template');
     return card.getView();
