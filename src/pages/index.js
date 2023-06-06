@@ -88,6 +88,7 @@ api.getInitialCards().then((cardData) => {
         renderer: renderCard
     }, cardListSelector);
     cardSection.renderItems();
+
     function renderCard(cardData) {
         const cardImage = createCard(cardData);
         cardSection.addItem(cardImage);
@@ -118,9 +119,25 @@ function createCard(cardData) {
         },
         handleLikeClick: () => {
             const id = card.getId();
-            api.likeCard(id).then(data => { console.log(data); })
+            api.likeCard(id).then(data => {
+                console.log(data);
+                card.addLike(cardId);
+            });
+            api.getLikesCount(id).then(() => {
+                card.setLikeCounter(id);
+            });
+
+            api.getInitialCards().then((cards) => {
+                cards.forEach(cardEl => {
+                    api.getLikesCount(cardEl);
+                });
+            })
         }
     }, '#card-template');
+    const cardId = card.getId();
+    api.getLikesCount(cardId).then(res => {
+        console.log(res);
+    });;
     return card.getView();
 }
 
