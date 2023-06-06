@@ -8,7 +8,8 @@ export default class Card {
         this._handleImageClick = handleImageClick;
         this._handleDeleteClick = handleDeleteClick;
         this._handleLikeClick = handleLikeClick;
-        this._likes = cardData.likes.length;
+        this._likes = cardData.likes;
+        this._owner = cardData.owner._id;
 
     }
 
@@ -26,17 +27,21 @@ export default class Card {
         return this._id;
     }
     checkLikeState() {
-        if (this._likeButton.contains("card__like-button_active")) {
+        if (this._owner === this._likes[0]._id) {
+            console.log(`owner : ${this._owner} liker: ${this._likes[0]._id}`);
+            this.addLike();
             return true;
         } else {
+            console.log(`owner : ${this._owner} liker: ${this._likes[0]._id}`);
+            this.removeLike();
             return false;
         }
     }
 
-    setLikeCounter(cardId) {
-        this._likesAmount.textContent = this._likes;
+    _setLikeCounter() {
+        this._likesAmount.textContent = this._likes.length;
     }
-    addLike(cardId) {
+    addLike() {
         this._handleLikeIcon();
         this._likeButton.addEventListener("click", () => {
             if (this._isLiked) {
@@ -45,7 +50,8 @@ export default class Card {
         });
         return this.likes;
     }
-    removeLike(cardId) {
+    removeLike() {
+
         this._likeButton.addEventListener("click", () => {
             this.likes = this.likes - 1;
         });
@@ -78,6 +84,7 @@ export default class Card {
 
         // then set event listners
         this._setEventListeners();
+        this._setLikeCounter();
         return this._elment;
     }
 }

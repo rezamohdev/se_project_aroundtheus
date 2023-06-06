@@ -119,25 +119,19 @@ function createCard(cardData) {
         },
         handleLikeClick: () => {
             const id = card.getId();
-            api.likeCard(id).then(data => {
-                console.log(data);
-                card.addLike(cardId);
-            });
-            api.getLikesCount(id).then(() => {
-                card.setLikeCounter(id);
-            });
-
-            api.getInitialCards().then((cards) => {
-                cards.forEach(cardEl => {
-                    api.getLikesCount(cardEl);
+            if (card.checkLikeState()) {
+                api.unLikeCard(id).then(data => {
+                    console.log(data);
                 });
-            })
+            } else {
+                api.likeCard(id).then(data => {
+                    console.log(data);
+                });
+            }
+
         }
     }, '#card-template');
-    const cardId = card.getId();
-    api.getLikesCount(cardId).then(res => {
-        console.log(res);
-    });;
+
     return card.getView();
 }
 
