@@ -1,6 +1,7 @@
 export default class Card {
-    constructor({ cardData, handleImageClick, handleDeleteClick, handleLikeClick }, cardSelector) {
+    constructor({ cardData, myId, handleImageClick, handleDeleteClick, handleLikeClick }, cardSelector) {
         this._cardData = cardData;
+        this._myId = myId;
         this._name = cardData.name;
         this._link = cardData.link;
         this._cardSelector = cardSelector;
@@ -10,7 +11,6 @@ export default class Card {
         this._likes = cardData.likes;
         this._owner = cardData.owner;
         this._id = cardData._id;
-        this._currentLikesCount = this._likes.length;
     }
 
     _setEventListeners() {
@@ -26,29 +26,26 @@ export default class Card {
     getId() {
         return this._id;
     }
-    isLiked(myId) {
-        return this._likes.some((like) => like._id === myId);
+    isLiked() {
+        console.log(this._myId);
+        return this._likes.some((like) => like._id === this._myId);
     }
 
     _setLikeCounter() {
         this._likesAmount.textContent = this._currentLikesCount;
     }
-    addLike() {
+    // addLike(likes) {
+    //     this._handleLikeIcon();
+    //     this._likes = likes;
+    //     this.updateLikes();
+    // }
+    // removeLike(likes) {
+    //     this.updateLikes();
+    // }
+    updateLikes(likes) {
         this._handleLikeIcon();
-        this._likeButton.addEventListener("click", () => {
-            return this._currentLikesCount + 1;
-        });
-        return this.updateLikes();
-    }
-    removeLike() {
-        this._handleLikeIcon();
-        this._likeButton.addEventListener("click", () => {
-            return this._currentLikesCount - 1;
-        });
-        return this.updateLikes();
-    }
-    updateLikes() {
-        this._likesAmount.textContent = this._currentLikesCount;
+        this._likes = likes;
+        this._likesAmount.textContent = this._likes.length;
     }
 
 

@@ -38,16 +38,17 @@ const editFormValidator = new FormValidator(validationSettings, modalProfileForm
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
 
 const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector });
-api.getUserInfo();
+
 
 api.getUserInfo().then(userData => {
     userInfo.setUserInfo({
         title: userData.name,
-        description: userData.about
+        description: userData.about,
+        userId: userData._id
     });
 });
 
-
+const userId = api.getUserInfo().then(res => res._id);
 
 const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector });
 
@@ -108,6 +109,7 @@ modalWithImage.setEventListeners();
 function createCard(cardData) {
     const card = new Card({
         cardData,
+        myId: userId,
         handleImageClick: (data) => {
             modalWithImage.open(data);
         },
@@ -117,14 +119,14 @@ function createCard(cardData) {
         },
         handleLikeClick: () => {
             const id = card.getId();
-            const myId = api.getUserInfo().then((data) => { return data; });
-            if (card.isLiked(myId)) {
-                api.unLikeCard().then(() => {
-                    card.removeCard();
+            if (card.isLiked()) {
+                api.unLikeCard().then((data) => {
+                    // card.removeCard(data.likes);
+                    card.updateLikes(data.likes);
                 });
             } else {
-                api.likeCard(id).then(() => {
-                    card.addLike();
+                api.likeCard(id).then((data) => {
+                    card.updateLikes(data.likes);
                 });
             }
 
