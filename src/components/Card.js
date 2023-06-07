@@ -27,12 +27,13 @@ export default class Card {
         return this._id;
     }
     isLiked() {
-        console.log(this._myId);
+        // console.log(this._myId);
+        console.log(this._likes.some((like) => { console.log(like._id); like._id === this._myId }));
         return this._likes.some((like) => like._id === this._myId);
     }
 
     _setLikeCounter() {
-        this._likesAmount.textContent = this._currentLikesCount;
+        this._likesAmount.textContent = this._likes.length;
     }
     // addLike(likes) {
     //     this._handleLikeIcon();
