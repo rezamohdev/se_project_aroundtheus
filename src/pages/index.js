@@ -44,7 +44,6 @@ api.getUserInfo().then(userData => {
     userInfo.setUserInfo({
         title: userData.name,
         description: userData.about,
-        userId: userData._id
     });
 });
 
@@ -55,13 +54,6 @@ const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector })
 const modalWithFormUser = new PopupWithForm({
     popupSelector: profileModalSelector,
     handleFormSubmit: (data) => {
-        // userInfo.setUserInfo(data);
-        // api.getUserInfo().then(userData => {
-        //     userInfo.setUserInfo({
-        //         title: userData.name,
-        //         description: userData.about
-        //     });
-        // });
         api.userEditProfile(data);
     }
 });
@@ -72,10 +64,7 @@ const modalWithFormImage = new PopupWithForm({
         api.addCard(data).then(data => {
 
             console.log(data);
-            // renderCard(data, cardListElement);
         });
-        //     const name = inputValues.title;
-        //     const link = inputValues.url;
 
 
 
@@ -83,7 +72,6 @@ const modalWithFormImage = new PopupWithForm({
     }
 });
 api.getInitialCards().then((cardData) => {
-    console.log(cardData);
     const cardSection = new Section({
         data: cardData,
         renderer: renderCard
