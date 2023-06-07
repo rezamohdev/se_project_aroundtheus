@@ -3,14 +3,14 @@ export default class Card {
         this._cardData = cardData;
         this._name = cardData.name;
         this._link = cardData.link;
-        this._id = cardData._id;
         this._cardSelector = cardSelector;
         this._handleImageClick = handleImageClick;
         this._handleDeleteClick = handleDeleteClick;
         this._handleLikeClick = handleLikeClick;
         this._likes = cardData.likes;
-        this._owner = cardData.owner._id;
-
+        this._owner = cardData.owner;
+        this._id = cardData._id;
+        this._currentLikesCount = this._likes.length;
     }
 
     _setEventListeners() {
@@ -26,36 +26,29 @@ export default class Card {
     getId() {
         return this._id;
     }
-    checkLikeState() {
-        if (this._owner === this._likes[0]._id) {
-            console.log(`owner : ${this._owner} liker: ${this._likes[0]._id}`);
-            this.addLike();
-            return true;
-        } else {
-            console.log(`owner : ${this._owner} liker: ${this._likes[0]._id}`);
-            this.removeLike();
-            return false;
-        }
+    isLiked(myId) {
+        return this._likes.some((like) => like._id === myId);
     }
 
     _setLikeCounter() {
-        this._likesAmount.textContent = this._likes.length;
+        this._likesAmount.textContent = this._currentLikesCount;
     }
     addLike() {
         this._handleLikeIcon();
         this._likeButton.addEventListener("click", () => {
-            if (this._isLiked) {
-                this.likes = this.likes + 1;
-            }
+            return this._currentLikesCount + 1;
         });
-        return this.likes;
+        return this.updateLikes();
     }
     removeLike() {
-
+        this._handleLikeIcon();
         this._likeButton.addEventListener("click", () => {
-            this.likes = this.likes - 1;
+            return this._currentLikesCount - 1;
         });
-        return this.likes;
+        return this.updateLikes();
+    }
+    updateLikes() {
+        this._likesAmount.textContent = this._currentLikesCount;
     }
 
 

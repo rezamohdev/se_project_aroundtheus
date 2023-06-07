@@ -38,7 +38,7 @@ const editFormValidator = new FormValidator(validationSettings, modalProfileForm
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
 
 const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector });
-api.getUserInfo().then(res => console.log(res));
+api.getUserInfo();
 
 api.getUserInfo().then(userData => {
     userInfo.setUserInfo({
@@ -61,7 +61,7 @@ const modalWithFormUser = new PopupWithForm({
         //         description: userData.about
         //     });
         // });
-        api.userEditProfile(data).then(res => { console.log(res); })
+        api.userEditProfile(data);
     }
 });
 
@@ -96,7 +96,6 @@ api.getInitialCards().then((cardData) => {
 });
 
 
-
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
@@ -104,7 +103,6 @@ addFormValidator.enableValidation();
 modalWithFormUser.setEventListeners();
 modalWithFormImage.setEventListeners();
 modalWithImage.setEventListeners();
-
 
 
 function createCard(cardData) {
@@ -119,13 +117,14 @@ function createCard(cardData) {
         },
         handleLikeClick: () => {
             const id = card.getId();
-            if (card.checkLikeState()) {
-                api.unLikeCard(id).then(data => {
-                    console.log(data);
+            const myId = api.getUserInfo().then((data) => { return data; });
+            if (card.isLiked(myId)) {
+                api.unLikeCard().then(() => {
+                    card.removeCard();
                 });
             } else {
-                api.likeCard(id).then(data => {
-                    console.log(data);
+                api.likeCard(id).then(() => {
+                    card.addLike();
                 });
             }
 

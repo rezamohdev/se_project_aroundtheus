@@ -15,7 +15,6 @@ export default class Api {
                 return Promise.reject(`Error: ${res.status}`)
             })
             .then((data) => {
-                console.log(data);
                 return data;
             })
             .catch((err) => {
@@ -133,6 +132,19 @@ export default class Api {
     unLikeCard(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             method: "DELETE",
+            headers: this._headers
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        }).then((likeData) => {
+            console.log(likeData);
+            return likeData;
+        }).catch((err) => console.error(err))
+    }
+    getMyUserId() {
+        return fetch(`${this._baseUrl}/users/me/`, {
             headers: this._headers
         }).then(res => {
             if (res.ok) {
