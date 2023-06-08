@@ -30,9 +30,9 @@ export default class Card {
         return this._likes.some((like) => like._id === this._myId);
     }
 
-    _setLikeCounter() {
-        this._likesAmount.textContent = this._likes.length;
-    }
+    // _setLikeCounter() {
+    //     this._likesAmount.textContent = this._likes.length;
+    // }
 
     setLikes(likes) {
         this._likes = likes;

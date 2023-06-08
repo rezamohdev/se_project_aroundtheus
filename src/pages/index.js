@@ -17,10 +17,16 @@ import {
     cardListElement,
     modalProfileForm,
     modalCardForm,
+    modalChangeProfileForm,
     validationSettings,
     profileEditButton,
     cardAddButton,
-    cardDeleteModal
+    changeProfileModalSubmitButton,
+    cardDeleteModalSelector,
+    modalChangeProfile,
+    modalChangeProfileSelector,
+    editButtonAvatart,
+    avatarSelector
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
@@ -37,20 +43,35 @@ const api = new Api({
 // instantiating card objects
 const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
+const changeProfileValidator = new FormValidator(validationSettings, modalChangeProfileForm);
 
-const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector });
+const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector, avatarSelector });
 
 let userId;
 api.getUserInfo().then(userData => {
     userId = userData._id;
+    console.log(userData);
     userInfo.setUserInfo({
         title: userData.name,
         description: userData.about,
     });
+    userInfo.setAvatartInfo(userData.avatar);
 });
 
 
 const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector });
+
+const changeProfilePopup = new PopupWithForm({
+    popupSelector: modalChangeProfileSelector,
+    handleFormSubmit: (data) => {
+        console.log(data);
+        api.updateUserProfile({ avatar: data.url })
+            .then(data => {
+                console.log(data)
+                userInfo.setAvatartInfo(data.avatar);
+            });
+    }
+});
 
 const modalWithFormUser = new PopupWithForm({
     popupSelector: profileModalSelector,
@@ -59,7 +80,7 @@ const modalWithFormUser = new PopupWithForm({
     }
 });
 
-const confirmModal = new PopupWithForm({ popupSelector: cardDeleteModal });
+const confirmModal = new PopupWithForm({ popupSelector: cardDeleteModalSelector });
 
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
@@ -84,12 +105,14 @@ api.getInitialCards().then((cardData) => {
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+changeProfileValidator.enableValidation();
 
 // setting event listeners
 modalWithFormUser.setEventListeners();
 modalWithFormImage.setEventListeners();
 modalWithImage.setEventListeners();
 confirmModal.setEventListeners();
+changeProfilePopup.setEventListeners();
 
 
 function createCard(cardData) {
@@ -134,5 +157,9 @@ profileEditButton.addEventListener('click', () => {
 cardAddButton.addEventListener('click', () => {
     addFormValidator.resetValidation();
     modalWithFormImage.open();
+});
+editButtonAvatart.addEventListener('click', () => {
+    console.log('clicked');
+    changeProfilePopup.open();
 });
 

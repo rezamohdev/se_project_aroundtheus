@@ -80,7 +80,8 @@ export default class Api {
     }
 
     userEditProfile({ title, description }) {
-        return fetch(`${this._baseUrl}/users/me`, {
+        // return fetch(`${this._baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
@@ -143,17 +144,19 @@ export default class Api {
             return likeData;
         }).catch((err) => console.error(err))
     }
-    getMyUserId() {
-        return fetch(`${this._baseUrl}/users/me/`, {
-            headers: this._headers
+
+    updateUserProfile(avatar) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify(avatar)
         }).then(res => {
             if (res.ok) {
                 return res.json();
             }
             return Promise.reject(`Error: ${res.status}`);
-        }).then((likeData) => {
-            console.log(likeData);
-            return likeData;
-        }).catch((err) => console.error(err))
+        }).then((data) => { console.log(data); return data; })
+            .catch((err) => console.error(err));
+
     }
 }

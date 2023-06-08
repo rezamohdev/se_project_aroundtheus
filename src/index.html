@@ -18,11 +18,14 @@
       </header>
       <main class="main">
         <section class="profile page__section">
-          <img
-            src="<%= require('./images/jacques-cousteau.png') %>"
-            alt="user profile picture"
-            class="profile__avatar"
-          />
+          <div class="profile__avatart-box">
+            <img
+              src="<%= require('./images/jacques-cousteau.png') %>"
+              alt="user profile picture"
+              class="profile__avatar"
+            />
+            <button class="profile__avatar-edit-button" type="button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
@@ -90,6 +93,42 @@
         </form>
       </div>
     </div>
+
+    <!-- change profile modal modal_opened -->
+    <div class="modal " id="change-profile-modal">
+      <div class="modal__container">
+        <button
+          type="button"
+          class="modal__close"
+          id="card-modal-close"
+        ></button>
+        <h3 class="modal__title">Change profile picture</h3>
+        <form name="modalForm" action="#" class="modal__form">
+          </label>
+          <label class="modal__label" for="modal-url-input">
+            <input
+              type="url"
+              name="url"
+              class="modal__input"
+              id="modal-url-input"
+              value=""
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="modal-url-input-error"></span>
+          </label>
+          <button
+            class="modal__button modal__button_disabled"
+            id="chnage-profile-modal-submit-button"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!-- card modal -->
     <div class="modal" id="card-modal">
       <div class="modal__container">
@@ -137,7 +176,7 @@
         </form>
       </div>
     </div>
-    <!-- card modal -->
+    <!-- card Delete modal -->
     <div class="modal" id="card-delete-modal">
       <div class="modal__container">
         <button

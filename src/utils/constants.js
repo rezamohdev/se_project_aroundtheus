@@ -37,17 +37,20 @@ export const cardAddButton = document.querySelector('#profile-add-button');
 export const profileModalSelector = "#profile-modal";
 export const cardModalSelector = '#card-modal';
 export const imageModalSelector = '#image-modal';
-export const userNameSelector = ('#profile-title');
+export const userNameSelector = '#profile-title';
 export const userDescriptionSelector = '#profile-description';
 export const modalNameInputSelector = '#modal-name';
+export const avatarSelector = '.profile__avatar';
 export const modalDescriptionInputSelector = '#modal-description';
 export const cardListSelector = '.gallery__cards';
-export const cardDeleteModal = '#card-delete-modal';
+export const cardDeleteModalSelector = '#card-delete-modal';
+export const modalChangeProfileSelector = '#change-profile-modal';
 
 // Modals
 const profileModal = document.querySelector(profileModalSelector);
 const cardModal = document.querySelector(cardModalSelector);
 const imageModal = document.querySelector(imageModalSelector);
+const changeProfileModal = document.querySelector(modalChangeProfileSelector);
 const modalImageElement = document.querySelector('.modal__image');
 const modalCaptionElement = document.querySelector('.modal__caption');
 
@@ -63,11 +66,14 @@ export const modalNameInput = document.querySelector(modalNameInputSelector);
 export const modalDescriptionInput = document.querySelector(modalDescriptionInputSelector);
 export const modalSubmitButton = document.querySelector('#modal-submit-button');
 export const cardModalSubmitButton = document.querySelector('#card-modal-submit-button');
+export const editButtonAvatart = document.querySelector('.profile__avatar-edit-button');
+export const changeProfileModalSubmitButton = document.querySelector('#chnage-profile-modal-submit-button');
 export const cardListElement = document.querySelector(cardListSelector);
 export const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 // forms
 export const modalProfileForm = profileModal.querySelector('.modal__form');
 export const modalCardForm = cardModal.querySelector('.modal__form');
+export const modalChangeProfileForm = changeProfileModal.querySelector('.modal__form');
 
 export const validationSettings = {
     formSelector: ".modal__form",
