@@ -20,6 +20,7 @@ import {
     validationSettings,
     profileEditButton,
     cardAddButton,
+    cardDeleteModal
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
@@ -58,14 +59,12 @@ const modalWithFormUser = new PopupWithForm({
     }
 });
 
+const confirmModal = new PopupWithForm({ popupSelector: cardDeleteModal });
+
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
         api.addCard(data);
-
-
-
-
     }
 });
 api.getInitialCards().then((cardData) => {
@@ -90,6 +89,7 @@ addFormValidator.enableValidation();
 modalWithFormUser.setEventListeners();
 modalWithFormImage.setEventListeners();
 modalWithImage.setEventListeners();
+confirmModal.setEventListeners();
 
 
 function createCard(cardData) {
@@ -100,24 +100,27 @@ function createCard(cardData) {
             modalWithImage.open(data);
         },
         handleDeleteClick: () => {
-            const id = card.getId();
-            api.removeCard(id).then(res => console.log(res));
+            confirmModal.open();
+            confirmModal.setSubmitAction(() => {
+                const id = card.getId();
+                api.removeCard(id).then(res => console.log(res));
+                card.handleDeleteIcon();
+            })
         },
         handleLikeClick: () => {
             const id = card.getId();
             if (card.isLiked()) {
                 api.unLikeCard(id).then((data) => {
-                    card.addLike(data.likes);
+                    card.setLikes(data.likes);
                 });
             } else {
                 api.likeCard(id).then((data) => {
-                    card.removeLike(data.likes);
+                    card.setLikes(data.likes);
                 });
             }
 
         }
     }, '#card-template');
-
     return card.getView();
 }
 

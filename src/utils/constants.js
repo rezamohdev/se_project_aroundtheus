@@ -42,7 +42,7 @@ export const userDescriptionSelector = '#profile-description';
 export const modalNameInputSelector = '#modal-name';
 export const modalDescriptionInputSelector = '#modal-description';
 export const cardListSelector = '.gallery__cards';
-export const userId = "";
+export const cardDeleteModal = '#card-delete-modal';
 
 // Modals
 const profileModal = document.querySelector(profileModalSelector);
