@@ -27,25 +27,25 @@ export default class Card {
         return this._id;
     }
     isLiked() {
-        // console.log(this._myId);
-        console.log(this._likes.some((like) => { console.log(like._id); like._id === this._myId }));
+        console.log(this._myId);
+        console.log(this._likes.some((like) => { like._id === this._myId }));
         return this._likes.some((like) => like._id === this._myId);
     }
 
     _setLikeCounter() {
-        this._likesAmount.textContent = this._currentLikesCount;
+        this._likesAmount.textContent = this._likes.length;
     }
-    // addLike(likes) {
-    //     this._handleLikeIcon();
-    //     this._likes = likes;
-    //     this.updateLikes();
-    // }
-    // removeLike(likes) {
-    //     this.updateLikes();
-    // }
-    updateLikes(likes) {
+    addLike(likes) {
         this._handleLikeIcon();
         this._likes = likes;
+        this.updateLikes();
+    }
+    removeLike(likes) {
+        this._handleLikeIcon();
+        this._likes = likes;
+        this.updateLikes();
+    }
+    updateLikes() {
         this._likesAmount.textContent = this._likes.length;
     }
 
