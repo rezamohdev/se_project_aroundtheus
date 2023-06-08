@@ -110,6 +110,7 @@ function createCard(cardData) {
             const id = card.getId();
             if (card.isLiked()) {
                 api.unLikeCard().then((data) => {
+                    // card.removeCard(data.likes);
                     card.updateLikes(data.likes);
                 });
             } else {
