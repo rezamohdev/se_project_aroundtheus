@@ -50,7 +50,6 @@ const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector, avata
 let userId;
 api.getUserInfo().then(userData => {
     userId = userData._id;
-    console.log(userData);
     userInfo.setUserInfo({
         title: userData.name,
         description: userData.about,
@@ -64,10 +63,8 @@ const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector })
 const changeProfilePopup = new PopupWithForm({
     popupSelector: modalChangeProfileSelector,
     handleFormSubmit: (data) => {
-        console.log(data);
         api.updateUserProfile({ avatar: data.url })
             .then(data => {
-                console.log(data)
                 userInfo.setAvatartInfo(data.avatar);
             });
     }
@@ -89,7 +86,6 @@ const modalWithFormImage = new PopupWithForm({
     }
 });
 api.getInitialCards().then((cardData) => {
-    console.log(cardData);
     const cardSection = new Section({
         data: cardData,
         renderer: renderCard
@@ -126,7 +122,7 @@ function createCard(cardData) {
             confirmModal.open();
             confirmModal.setSubmitAction(() => {
                 const id = card.getId();
-                api.removeCard(id).then(res => console.log(res));
+                api.removeCard(id);
                 card.handleDeleteIcon();
             })
         },
@@ -159,7 +155,6 @@ cardAddButton.addEventListener('click', () => {
     modalWithFormImage.open();
 });
 editButtonAvatart.addEventListener('click', () => {
-    console.log('clicked');
     changeProfilePopup.open();
 });
 
