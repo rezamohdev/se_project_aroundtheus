@@ -8,7 +8,7 @@ export default class Section {
         this._container.append(element);
     }
 
-    prependElement(element) {
+    prependItem(element) {
         this._container.prepend(element);
     }
     renderItems() {

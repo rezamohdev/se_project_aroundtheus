@@ -57,7 +57,6 @@ api.getUserInfo().then(userData => {
     userInfo.setAvatartInfo(userData.avatar);
 });
 
-
 const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector });
 
 const changeProfilePopup = new PopupWithForm({
@@ -101,7 +100,6 @@ const confirmModal = new PopupWithForm({
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
-        // api.getInitialCards();
         console.log(data);
         modalWithFormImage.renderLoading(true);
         api.addCard(data)
@@ -114,16 +112,18 @@ const modalWithFormImage = new PopupWithForm({
     loadingText: "Saving..."
 });
 
+function renderCard(cardData) {
+    const cardImage = createCard(cardData);
+    cardInstance.prependElement(cardImage);
+}
+
 api.getInitialCards().then((cardData) => {
     cardInstance = new Section({
         data: cardData,
         renderer: renderCard
     }, cardListSelector);
     cardInstance.renderItems();
-
-
 });
-
 
 
 editFormValidator.enableValidation();
@@ -171,10 +171,7 @@ function createCard(cardData) {
     }, '#card-template');
     return card.getView();
 }
-function renderCard(cardData) {
-    const cardImage = createCard(cardData);
-    cardInstance.addItem(cardImage);
-}
+
 
 profileEditButton.addEventListener('click', () => {
     modalWithFormUser.open();
