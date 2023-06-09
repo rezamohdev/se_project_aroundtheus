@@ -80,8 +80,7 @@ export default class Api {
     }
 
     userEditProfile({ title, description }) {
-        // return fetch(`${this._baseUrl}/users/me`, {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
+        return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
