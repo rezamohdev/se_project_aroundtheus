@@ -5,7 +5,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/section.js";
 import {
-    initialCards,
     userNameSelector,
     userDescriptionSelector,
     imageModalSelector,
@@ -67,23 +66,40 @@ const changeProfilePopup = new PopupWithForm({
             .then(data => {
                 userInfo.setAvatartInfo(data.avatar);
             });
-    }
+    },
+    loadingText: "Saving..."
 });
 
 const modalWithFormUser = new PopupWithForm({
     popupSelector: profileModalSelector,
     handleFormSubmit: (data) => {
-        api.userEditProfile(data);
-    }
+        modalWithFormUser.renderLoading(true);
+        api.userEditProfile(data).finally(() => {
+            modalWithFormUser.renderLoading(false);
+        });
+    },
+    loadingText: "Saving..."
 });
 
-const confirmModal = new PopupWithForm({ popupSelector: cardDeleteModalSelector });
+const confirmModal = new PopupWithForm({
+    handleFormSubmit: () => {
+        confirmModal.renderLoading(true);
+    },
+    popupSelector: cardDeleteModalSelector,
+
+    loadingText: "Deleting..."
+});
 
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
-        api.addCard(data);
-    }
+        modalWithFormImage.renderLoading(true);
+        api.addCard(data).finally(() => {
+            modalWithFormImage.renderLoading(false);
+        });
+    },
+    loadingText: "Saving..."
+
 });
 api.getInitialCards().then((cardData) => {
     const cardSection = new Section({
@@ -122,7 +138,9 @@ function createCard(cardData) {
             confirmModal.open();
             confirmModal.setSubmitAction(() => {
                 const id = card.getId();
-                api.removeCard(id);
+                api.removeCard(id).finally(() => {
+                    confirmModal.renderLoading(false);
+                });
                 card.handleDeleteIcon();
             })
         },

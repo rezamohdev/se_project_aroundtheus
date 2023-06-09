@@ -29,11 +29,6 @@ export default class Card {
     isLiked() {
         return this._likes.some((like) => like._id === this._myId);
     }
-
-    // _setLikeCounter() {
-    //     this._likesAmount.textContent = this._likes.length;
-    // }
-
     setLikes(likes) {
         this._likes = likes;
         this._handleLikeIcon();
@@ -49,6 +44,11 @@ export default class Card {
             this._likeButton.classList.add('card__like-button_active');
         } else {
             this._likeButton.classList.remove('card__like-button_active');
+        }
+    }
+    _checkCardOwner() {
+        if (this._myId !== this._owner._id) {
+            this._deleteButton.classList.add('card__delete-button-hidden');
         }
     }
 
@@ -75,6 +75,7 @@ export default class Card {
         this._setEventListeners();
         this.updateLikes();
         this._handleLikeIcon();
+        this._checkCardOwner();
         return this._elment;
     }
 }

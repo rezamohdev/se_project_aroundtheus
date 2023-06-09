@@ -81,6 +81,9 @@
   background: transparent url(../images/trash.svg) no-repeat;
   transition: opacity 470ms ease;
 }
+.card__delete-button-hidden {
+  display: none;
+}
 .card__delete-button:hover {
   opacity: 0.6;
 }
