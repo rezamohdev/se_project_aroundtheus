@@ -43,6 +43,7 @@ const api = new Api({
 const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
 const changeProfileValidator = new FormValidator(validationSettings, modalChangeProfileForm);
+const changeAvatar = new FormValidator(validationSettings,)
 
 const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector, avatarSelector });
 
@@ -118,6 +119,7 @@ api.getInitialCards().then((cardData) => {
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 changeProfileValidator.enableValidation();
+// confirmModal.enableValidation();
 
 // setting event listeners
 modalWithFormUser.setEventListeners();
