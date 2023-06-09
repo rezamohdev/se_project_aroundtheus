@@ -75,7 +75,14 @@ const modalWithFormUser = new PopupWithForm({
     popupSelector: profileModalSelector,
     handleFormSubmit: (data) => {
         modalWithFormUser.renderLoading(true);
-        api.userEditProfile(data).finally(() => {
+        api.userEditProfile(data).then((data) => {
+            userInfo.setUserInfo({
+                title: data.name,
+                description: data.about
+            });
+            userInfo.setAvatartInfo(data.avatar);
+        }).finally(() => {
+
             modalWithFormUser.renderLoading(false);
         });
     },
@@ -95,12 +102,13 @@ const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
         modalWithFormImage.renderLoading(true);
-        api.addCard(data).finally(() => {
+        api.addCard(data).then(() => {
+            api.getInitialCards();
+        }).finally(() => {
             modalWithFormImage.renderLoading(false);
         });
     },
     loadingText: "Saving..."
-
 });
 api.getInitialCards().then((cardData) => {
     const cardSection = new Section({
@@ -119,7 +127,6 @@ api.getInitialCards().then((cardData) => {
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 changeProfileValidator.enableValidation();
-// confirmModal.enableValidation();
 
 // setting event listeners
 modalWithFormUser.setEventListeners();
