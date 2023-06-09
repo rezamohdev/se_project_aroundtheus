@@ -43,10 +43,10 @@ const api = new Api({
 const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
 const addFormValidator = new FormValidator(validationSettings, modalCardForm);
 const changeProfileValidator = new FormValidator(validationSettings, modalChangeProfileForm);
-const changeAvatar = new FormValidator(validationSettings,)
 
 const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector, avatarSelector });
 
+let cardInstance;
 let userId;
 api.getUserInfo().then(userData => {
     userId = userData._id;
@@ -101,27 +101,29 @@ const confirmModal = new PopupWithForm({
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
+        // api.getInitialCards();
+        console.log(data);
         modalWithFormImage.renderLoading(true);
-        api.addCard(data).then(() => {
-            api.getInitialCards();
-        }).finally(() => {
-            modalWithFormImage.renderLoading(false);
-        });
+        api.addCard(data)
+            .then((data) => {
+                renderCard(data);
+            }).finally(() => {
+                modalWithFormImage.renderLoading(false);
+            });
     },
     loadingText: "Saving..."
 });
+
 api.getInitialCards().then((cardData) => {
-    const cardSection = new Section({
+    cardInstance = new Section({
         data: cardData,
         renderer: renderCard
     }, cardListSelector);
-    cardSection.renderItems();
+    cardInstance.renderItems();
 
-    function renderCard(cardData) {
-        const cardImage = createCard(cardData);
-        cardSection.addItem(cardImage);
-    }
+
 });
+
 
 
 editFormValidator.enableValidation();
@@ -168,6 +170,10 @@ function createCard(cardData) {
         }
     }, '#card-template');
     return card.getView();
+}
+function renderCard(cardData) {
+    const cardImage = createCard(cardData);
+    cardInstance.addItem(cardImage);
 }
 
 profileEditButton.addEventListener('click', () => {
