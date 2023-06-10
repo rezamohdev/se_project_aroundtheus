@@ -29,7 +29,7 @@ import {
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
-import Api from "../components/API.js"
+import Api from "../utils/API.js"
 const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-12",
     headers: {
@@ -55,7 +55,9 @@ api.getUserInfo().then(userData => {
         description: userData.about,
     });
     userInfo.setAvatartInfo(userData.avatar);
-});
+}).catch((err) => {
+    console.error(err);
+});;
 
 const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector });
 
@@ -65,7 +67,7 @@ const changeProfilePopup = new PopupWithForm({
         api.updateUserProfile({ avatar: data.url })
             .then(data => {
                 userInfo.setAvatartInfo(data.avatar);
-            });
+            }).catch((err) => console.error(err));
     },
     loadingText: "Saving..."
 });
@@ -80,7 +82,7 @@ const modalWithFormUser = new PopupWithForm({
                 description: data.about
             });
             userInfo.setAvatartInfo(data.avatar);
-        }).finally(() => {
+        }).catch(err => { console.error(err); }).finally(() => {
 
             modalWithFormUser.renderLoading(false);
         });
@@ -105,6 +107,8 @@ const modalWithFormImage = new PopupWithForm({
         api.addCard(data)
             .then((data) => {
                 renderCard(data);
+            }).catch((err) => {
+                console.error(err);
             }).finally(() => {
                 modalWithFormImage.renderLoading(false);
             });
@@ -150,9 +154,12 @@ function createCard(cardData) {
             confirmModal.open();
             confirmModal.setSubmitAction(() => {
                 const id = card.getId();
-                api.removeCard(id).finally(() => {
-                    confirmModal.renderLoading(false);
-                });
+                api.removeCard(id)
+                    .catch((err) => {
+                        console.error(err);
+                    }).finally(() => {
+                        confirmModal.renderLoading(false);
+                    });
                 card.handleDeleteIcon();
             })
         },
@@ -161,11 +168,11 @@ function createCard(cardData) {
             if (card.isLiked()) {
                 api.unLikeCard(id).then((data) => {
                     card.setLikes(data.likes);
-                });
+                }).catch((err) => console.error(err));
             } else {
                 api.likeCard(id).then((data) => {
                     card.setLikes(data.likes);
-                });
+                }).catch((err) => console.error(err));
             }
 
         }
