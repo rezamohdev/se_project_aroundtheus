@@ -114,16 +114,17 @@ const modalWithFormImage = new PopupWithForm({
 
 function renderCard(cardData) {
     const cardImage = createCard(cardData);
-    cardInstance.prependElement(cardImage);
+    cardInstance.prependItem(cardImage);
 }
 
-api.getInitialCards().then((cardData) => {
-    cardInstance = new Section({
-        data: cardData,
-        renderer: renderCard
-    }, cardListSelector);
-    cardInstance.renderItems();
-});
+api.getInitialCards()
+    .then((cardData) => {
+        cardInstance = new Section({
+            data: cardData,
+            renderer: renderCard
+        }, cardListSelector);
+        cardInstance.renderItems();
+    }).catch((err) => { console.error(err); });
 
 
 editFormValidator.enableValidation();
