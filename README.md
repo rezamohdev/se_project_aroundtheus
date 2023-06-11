@@ -2,9 +2,9 @@
 
 ### Screenshots of Project
 
-![Design preview for Desktop](./desgin/desktop.png)
-![Design preview for Tablet](./desgin/tablet.png)
-![Design preview for Mobile](./desgin/mobile.png)
+![Design preview for Desktop](./src/desgin/desktop.png)
+![Design preview for Tablet](./src/desgin/tablet.png)
+![Design preview for Mobile](./src/desgin/mobile.png)
 
 ### Overview
 
