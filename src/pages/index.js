@@ -25,7 +25,7 @@ import {
     modalChangeProfile,
     modalChangeProfileSelector,
     editButtonAvatart,
-    avatarSelector
+    avatarSelector,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
@@ -36,38 +36,64 @@ const api = new Api({
         authorization: "9eeac52f-491b-4cc6-8ef1-69498b3521ca",
         "Content-Type": "application/json"
     }
-
 });
 
+const formValidators = {}
+
+// enable validation
+const enableValidation = (validationSettings) => {
+    const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
+    formList.forEach((formElement) => {
+        const validator = new FormValidator(validationSettings, formElement)
+
+        const formName = formElement.getAttribute('name')
+
+        formValidators[formName] = validator;
+        validator.enableValidation();
+    });
+};
+
+enableValidation(validationSettings);
+
 // instantiating card objects
-const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
-const addFormValidator = new FormValidator(validationSettings, modalCardForm);
-const changeProfileValidator = new FormValidator(validationSettings, modalChangeProfileForm);
+// const editFormValidator = new FormValidator(validationSettings, modalProfileForm);
+// const addFormValidator = new FormValidator(validationSettings, modalCardForm);
+// const changeProfileValidator = new FormValidator(validationSettings, modalChangeProfileForm);
 
 const userInfo = new UserInfo({ userNameSelector, userDescriptionSelector, avatarSelector });
 
-let cardInstance;
+let sectionInstance;
 let userId;
-api.getUserInfo().then(userData => {
-    userId = userData._id;
-    userInfo.setUserInfo({
-        title: userData.name,
-        description: userData.about,
-    });
-    userInfo.setAvatartInfo(userData.avatar);
-}).catch((err) => {
-    console.error(err);
-});;
+api.getAppInfo()
+    .then(([userData, cardData]) => {
+        // set all the data
+        userId = userData._id;
+        userInfo.setUserInfo({
+            title: userData.name,
+            description: userData.about
+        });
+        userInfo.setAvatartInfo(userData.avatar);
+        sectionInstance = new Section({
+            data: cardData,
+            renderer: renderCard
+        }, cardListSelector);
+        sectionInstance.renderItems();
+    })
+    .catch(console.error);
 
 const modalWithImage = new PopupWithImage({ popupSelector: imageModalSelector });
 
 const changeProfilePopup = new PopupWithForm({
     popupSelector: modalChangeProfileSelector,
     handleFormSubmit: (data) => {
+        changeProfilePopup.renderLoading(true);
         api.updateUserProfile({ avatar: data.url })
             .then(data => {
                 userInfo.setAvatartInfo(data.avatar);
-            }).catch((err) => console.error(err));
+            }).catch(console.error).finally(() => {
+                changeProfilePopup.renderLoading(false);
+                changeProfilePopup.close();
+            });
     },
     loadingText: "Saving..."
 });
@@ -82,35 +108,29 @@ const modalWithFormUser = new PopupWithForm({
                 description: data.about
             });
             userInfo.setAvatartInfo(data.avatar);
-        }).catch(err => { console.error(err); }).finally(() => {
-
+        }).catch(console.error).finally(() => {
             modalWithFormUser.renderLoading(false);
+            modalWithFormUser.close();
         });
     },
     loadingText: "Saving..."
 });
 
 const confirmModal = new PopupWithForm({
-    handleFormSubmit: () => {
-        confirmModal.renderLoading(true);
-    },
     popupSelector: cardDeleteModalSelector,
-
     loadingText: "Deleting..."
 });
 
 const modalWithFormImage = new PopupWithForm({
     popupSelector: cardModalSelector,
     handleFormSubmit: (data) => {
-        console.log(data);
         modalWithFormImage.renderLoading(true);
         api.addCard(data)
             .then((data) => {
                 renderCard(data);
-            }).catch((err) => {
-                console.error(err);
-            }).finally(() => {
+            }).catch(console.error).finally(() => {
                 modalWithFormImage.renderLoading(false);
+                modalWithFormImage.close();
             });
     },
     loadingText: "Saving..."
@@ -118,22 +138,12 @@ const modalWithFormImage = new PopupWithForm({
 
 function renderCard(cardData) {
     const cardImage = createCard(cardData);
-    cardInstance.prependItem(cardImage);
+    sectionInstance.prependItem(cardImage);
 }
 
-api.getInitialCards()
-    .then((cardData) => {
-        cardInstance = new Section({
-            data: cardData,
-            renderer: renderCard
-        }, cardListSelector);
-        cardInstance.renderItems();
-    }).catch((err) => { console.error(err); });
-
-
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
-changeProfileValidator.enableValidation();
+// editFormValidator.enableValidation();
+// addFormValidator.enableValidation();
+// changeProfileValidator.enableValidation();
 
 // setting event listeners
 modalWithFormUser.setEventListeners();
@@ -141,7 +151,6 @@ modalWithFormImage.setEventListeners();
 modalWithImage.setEventListeners();
 confirmModal.setEventListeners();
 changeProfilePopup.setEventListeners();
-
 
 function createCard(cardData) {
     const card = new Card({
@@ -153,14 +162,15 @@ function createCard(cardData) {
         handleDeleteClick: () => {
             confirmModal.open();
             confirmModal.setSubmitAction(() => {
+                confirmModal.renderLoading(true);
                 const id = card.getId();
-                api.removeCard(id)
-                    .catch((err) => {
-                        console.error(err);
-                    }).finally(() => {
+                api.removeCard(id).then(() => {
+                    card.handleDeleteIcon();
+                })
+                    .catch(console.error).finally(() => {
                         confirmModal.renderLoading(false);
+                        confirmModal.close();
                     });
-                card.handleDeleteIcon();
             })
         },
         handleLikeClick: () => {
@@ -168,31 +178,29 @@ function createCard(cardData) {
             if (card.isLiked()) {
                 api.unLikeCard(id).then((data) => {
                     card.setLikes(data.likes);
-                }).catch((err) => console.error(err));
+                }).catch(console.error);
             } else {
                 api.likeCard(id).then((data) => {
                     card.setLikes(data.likes);
-                }).catch((err) => console.error(err));
+                }).catch(console.error);
             }
-
         }
     }, '#card-template');
     return card.getView();
 }
-
 
 profileEditButton.addEventListener('click', () => {
     modalWithFormUser.open();
     const userData = userInfo.getUserInfo();
     modalNameInput.value = userData.userName;
     modalDescriptionInput.value = userData.userDescription;
-    editFormValidator.resetValidation();
+    formValidators['editProfileModalForm'].resetValidation();
 });
 cardAddButton.addEventListener('click', () => {
-    addFormValidator.resetValidation();
+    formValidators['cardModalForm'].resetValidation();
     modalWithFormImage.open();
 });
 editButtonAvatart.addEventListener('click', () => {
+    formValidators['changeAvatarModalForm'].resetValidation();
     changeProfilePopup.open();
 });
-

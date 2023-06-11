@@ -3,6 +3,9 @@ export default class Api {
         this._baseUrl = baseUrl,
             this._headers = headers
     }
+    getAppInfo() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards()])
+    }
     _checkResponse(res) {
         if (res.ok) {
             return res.json();

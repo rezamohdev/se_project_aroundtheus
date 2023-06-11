@@ -55,7 +55,6 @@ class FormValidator {
         }
     }
 
-
     _hasInvalidInput() {
         return !this._inputList.every((inputElement) => {
             return inputElement.validity.valid;
@@ -73,14 +72,13 @@ class FormValidator {
         });
     }
 
-
     enableValidation() {
         this._formElement.addEventListener("submit", function (e) {
             e.preventDefault();
         });
-
         this._setEventListeners();
     }
+
 }
 
 export default FormValidator;

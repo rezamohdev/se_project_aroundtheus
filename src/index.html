@@ -53,11 +53,17 @@
         <p class="footer__copyright">&copy; Around the U.S.</p>
       </footer>
     </div>
+    <!-- Edit profile Modal -->
     <div class="modal" id="profile-modal">
       <div class="modal__container">
         <button type="button" class="modal__close" id="modal-close"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <form name="modalForm" action="#" class="modal__form" novalidate>
+        <form
+          name="editProfileModalForm"
+          action="#"
+          class="modal__form"
+          novalidate
+        >
           <label for="modal-name" class="modal__label">
             <input
               type="text"
@@ -103,7 +109,7 @@
           id="avatar-modal-close"
         ></button>
         <h3 class="modal__title">Change profile picture</h3>
-        <form name="modalForm" action="#" class="modal__form">
+        <form name="changeAvatarModalForm" action="#" class="modal__form">
           <label class="modal__label" for="modal-url-input">
             <input
               type="url"
@@ -137,7 +143,7 @@
           id="card-modal-close"
         ></button>
         <h3 class="modal__title">New Place</h3>
-        <form name="modalForm" action="#" class="modal__form">
+        <form name="cardModalForm" action="#" class="modal__form">
           <label for="modal-title-input" class="modal__label">
             <input
               type="text"

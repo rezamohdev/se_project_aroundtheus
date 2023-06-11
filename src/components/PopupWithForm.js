@@ -9,6 +9,14 @@ export default class PopupWithForm extends Popup {
         this._submitButtonText = this._submitButton.textContent;
         this._loadingText = loadingText;
     }
+
+    setInputValues(data) {
+        this._inputList.forEach((input) => {
+            // here you insert the `value` by the `name` of the input
+            input.value = data[input.name];
+        });
+    }
+
     close() {
         this._popupForm.reset();
         super.close();
@@ -36,7 +44,6 @@ export default class PopupWithForm extends Popup {
         this._popupForm.addEventListener('submit', (event) => {
             event.preventDefault();
             this._handleFormSubmit(this._getInputValues());
-            this.close();
         });
 
         super.setEventListeners();

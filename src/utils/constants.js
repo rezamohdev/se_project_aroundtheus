@@ -1,9 +1,6 @@
-
-
 // Buttons
 export const profileEditButton = document.querySelector('#profile-edit-button');
 export const cardAddButton = document.querySelector('#profile-add-button');
-
 
 // others
 export const profileModalSelector = "#profile-modal";
